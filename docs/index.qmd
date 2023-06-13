@@ -1,0 +1,76 @@
+---
+title: "Validación de datos con pointblank"
+subtitle: "\"With The  `pointblank`  Package\""
+author: "Cañadas Reche, José Luis"
+institute: "Grupo usuarios de R Madrid"
+date: "2023-06-29"
+format:
+  revealjs: 
+    slide-number: true
+    theme: theme.scss
+    css: theme.css
+    linkcolor: "#1a1a1a"
+    highlight-style: github
+    code-copy: true
+    code-link: true
+    code-overflow: wrap
+    code-block-bg: true
+    transition: fade
+    width: 1600
+editor: source
+title-slide-attributes: 
+  #data-background-image: "images/title_back.PNG"
+  data-background-size: "45%"
+  data-background-position: "right"
+---
+
+## [Sobre mi]{style="color: #000000;"} {.dark background-color="#333333"}
+
+<br>
+
+::: columns
+::: {.column width="40%"}
+![](images/profile2.jpg){#headshot}
+:::
+
+::: {.column width="60%"}
+-   Soy José Luis Cañadas 👋🏾
+-   Data Scientist/ Estadístico 💻
+-   ️Orange Spain 🍊
+:::
+:::
+
+## <span style="color: #ffffff;">Qué quiero contar {.light background-color="#ffffff"}
+
+::: incremental
+<br>
+
+-   Me he copiado en gran parte de [aquí](https://meghansaha.github.io/exploring_validation/#/title-slide)
+
+-   ¿Qué es validación de datos y por qué hay que ser cuidadosos? 
+
+-   Diferentes tipos de validación
+
+-   ¿Qué es `pointblank`?
+
+-   ¿Por qué `pointblank`?
+
+-  `pointblank` en big data
+:::
+
+## [Disclaimer]{style="color: #000000;"} {.dark background-color="#333333"}
+
+<center>
+
+<h1 style="margin-top:5%">
+
+Estoy empezando a probar `pointblank`. No tengo mucha más idea de lo que voy descubriendo al hacer estas slides
+
+</h1>
+
+::: fragment
+![](images/phony.png){.memes width="500px" height="350px"}
+:::
+
+</center>
+
