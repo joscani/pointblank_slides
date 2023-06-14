@@ -107,6 +107,8 @@ Hablando de datos podría ser cosas como:
 
 > Y esto es importante porque.... 
 
+:::columns
+::: {.column width="50%"}
 <br>
 
 ::: incremental
@@ -115,7 +117,13 @@ Hablando de datos podría ser cosas como:
 -   Es muy probable que no haya ningún control, por mucho que te digan que todo está bien
 
 :::
-
+:::
+::: {.column width="50%"}
+:::fragment
+![](images/edades_negativas.jpg)
+:::
+:::
+:::
 
 
 
