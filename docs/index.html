@@ -602,7 +602,7 @@ Variable Type
 </section>
 <section id="pointblank-en-spark" class="slide level2 light" data-background-color="#ffffff">
 <h2><span style="color: #ffffff;"><code>pointblank</code> en Spark</span></h2>
-<h3 id="example-data">Example Data:</h3>
+<h3 id="datos-de-ejemplo">Datos de ejemplo:</h3>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb5" data-code-line-numbers="3|7-11"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1"></a><span class="fu">library</span>(tidyverse)</span>
 <span id="cb5-2"><a href="#cb5-2"></a><span class="fu">library</span>(sparklyr)</span>
@@ -618,7 +618,7 @@ Variable Type
 <span id="cb5-12"><a href="#cb5-12"></a></span>
 <span id="cb5-13"><a href="#cb5-13"></a>nyc_tabla</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code># Source: spark&lt;part0_73f0f8b9_d607_4d85_93ff_2ea400129574&gt; [?? x 22]
+<pre><code># Source: spark&lt;part0_f06c9603_122d_4aa1_a82f_da95ad3c3126&gt; [?? x 22]
    vendor_name pickup_datetime     dropoff_datetime    passenger_count
    &lt;chr&gt;       &lt;dttm&gt;              &lt;dttm&gt;                        &lt;dbl&gt;
  1 VTS         2020-01-01 10:40:30 2020-01-01 10:48:29               1
@@ -638,6 +638,77 @@ Variable Type
 #   fare_amount &lt;dbl&gt;, extra &lt;dbl&gt;, mta_tax &lt;dbl&gt;, tip_amount &lt;dbl&gt;,
 #   tolls_amount &lt;dbl&gt;, total_amount &lt;dbl&gt;, improvement_surcharge &lt;dbl&gt;,
 #   congestion_surcharge &lt;dbl&gt;, pickup_location_id &lt;dbl&gt;, …</code></pre>
+</div>
+</div>
+</section>
+<section id="pointblank-en-spark-1" class="slide level2 light" data-background-color="#ffffff">
+<h2><span style="color: #ffffff;"><code>pointblank</code> en Spark</span></h2>
+<div class="columns">
+<div class="column" style="width:70%;">
+<h3 id="encadenar-reglas">Encadenar reglas</h3>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb7" data-code-line-numbers="1-5|6-8"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1"></a>agent <span class="ot">&lt;-</span> </span>
+<span id="cb7-2"><a href="#cb7-2"></a>    <span class="fu">create_agent</span>(</span>
+<span id="cb7-3"><a href="#cb7-3"></a>        <span class="at">tbl =</span> nyc_tabla,</span>
+<span id="cb7-4"><a href="#cb7-4"></a>        <span class="at">tbl_name =</span> <span class="st">"big_tabla_nyc"</span></span>
+<span id="cb7-5"><a href="#cb7-5"></a>    ) <span class="sc">%&gt;%</span></span>
+<span id="cb7-6"><a href="#cb7-6"></a>    <span class="fu">col_is_posix</span>(<span class="fu">vars</span>(pickup_datetime)) <span class="sc">%&gt;%</span></span>
+<span id="cb7-7"><a href="#cb7-7"></a>    <span class="fu">col_vals_gt</span>(<span class="fu">vars</span>(passenger_count), <span class="at">value =</span> <span class="dv">0</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb7-8"><a href="#cb7-8"></a>    <span class="fu">col_vals_gt</span>(<span class="fu">vars</span>(trip_distance), <span class="at">value =</span> <span class="dv">0</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</div><div class="column" style="width:1%;">
+
+</div><div class="column" style="width:29%;">
+<h3 id="pasos">Pasos</h3>
+<ol type="1">
+<li>Se crea un “Agente”</li>
+<li>Se añaden <a href="https://rich-iannone.github.io/pointblank/articles/VALID-I.html">reglas de validación</a></li>
+</ol>
+</div>
+</div>
+</section>
+<section id="pointblank-en-spark-2" class="slide level2 light" data-background-color="#ffffff">
+<h2><span style="color: #ffffff;"><code>pointblank</code> en Spark</span></h2>
+<div class="columns">
+<div class="column" style="width:70%;">
+<h3 id="interrogar-al-agente">Interrogar al agente</h3>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb8" data-code-line-numbers="11-13"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1"></a><span class="co"># crear agente</span></span>
+<span id="cb8-2"><a href="#cb8-2"></a>agent <span class="ot">&lt;-</span> </span>
+<span id="cb8-3"><a href="#cb8-3"></a>    <span class="fu">create_agent</span>(</span>
+<span id="cb8-4"><a href="#cb8-4"></a>        <span class="at">tbl =</span> nyc_tabla,</span>
+<span id="cb8-5"><a href="#cb8-5"></a>        <span class="at">tbl_name =</span> <span class="st">"big_tabla_nyc"</span></span>
+<span id="cb8-6"><a href="#cb8-6"></a>    ) <span class="sc">%&gt;%</span></span>
+<span id="cb8-7"><a href="#cb8-7"></a>    <span class="fu">col_is_posix</span>(<span class="fu">vars</span>(pickup_datetime)) <span class="sc">%&gt;%</span></span>
+<span id="cb8-8"><a href="#cb8-8"></a>    <span class="fu">col_vals_gt</span>(<span class="fu">vars</span>(passenger_count), <span class="at">value =</span> <span class="dv">0</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb8-9"><a href="#cb8-9"></a>    <span class="fu">col_vals_gt</span>(<span class="fu">vars</span>(trip_distance), <span class="at">value =</span> <span class="dv">0</span>)</span>
+<span id="cb8-10"><a href="#cb8-10"></a></span>
+<span id="cb8-11"><a href="#cb8-11"></a><span class="co"># preguntar </span></span>
+<span id="cb8-12"><a href="#cb8-12"></a>agent <span class="sc">%&gt;%</span></span>
+<span id="cb8-13"><a href="#cb8-13"></a>  <span class="fu">interrogate</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</div><div class="column" style="width:1%;">
+
+</div><div class="column" style="width:29%;">
+<h3 id="pasos-1">Pasos</h3>
+<ol type="1">
+<li>Se crea un “Agente”</li>
+<li>Se añaden <a href="https://rich-iannone.github.io/pointblank/articles/VALID-I.html">reglas de validación</a></li>
+<li>Interrogar al agente</li>
+</ol>
+</div>
+</div>
+</section>
+<section id="pointblank-en-spark-3" class="slide level2 light" data-background-color="#ffffff">
+<h2><span style="color: #ffffff;"><code>pointblank</code> en Spark</span></h2>
+<div class="columns">
+<div class="column" style="width:60%;">
+<h3 id="ver-resultado">Ver resultado</h3>
+<p><img data-src="images/res1.png"></p>
+</div><div class="column" style="width:40%;">
+<center>
+<br><br><br> <strong>Date/Time/Object Metadata</strong>
+</center>
 </div>
 </div>
 <div class="footer footer-default">

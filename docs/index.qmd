@@ -233,7 +233,7 @@ Se puede utilizar con dataframes o con orígenes remotos de datos como postgress
 
 ## <span style="color: #ffffff;">`pointblank` en Spark {.light background-color="#ffffff"}
 
-### Example Data:
+### Datos de ejemplo:
 
 ```{r spark_read_data, echo = TRUE,  `code-line-numbers`="3|7-11"}
 library(tidyverse)
@@ -251,4 +251,87 @@ nyc_tabla <- sc |>
 nyc_tabla
 
 ```
+
+## <span style="color: #ffffff;">`pointblank` en Spark {.light background-color="#ffffff"}
+
+:::columns
+:::{.column width="70%"}
+### Encadenar reglas
+
+```{r create_agent1,  echo = TRUE, results='hide', `code-line-numbers`="1-5|6-8"}
+agent <- 
+    create_agent(
+        tbl = nyc_tabla,
+        tbl_name = "big_tabla_nyc"
+    ) %>%
+    col_is_posix(vars(pickup_datetime)) %>%
+    col_vals_gt(vars(passenger_count), value = 0) %>%
+    col_vals_gt(vars(trip_distance), value = 0)
+```
+
+
+:::
+::: {.column width="1%"}
+:::
+
+::: {.column width="29%"}
+### Pasos
+
+1. Se crea un "Agente"
+2. Se añaden [reglas de validación](https://rich-iannone.github.io/pointblank/articles/VALID-I.html)
+:::
+:::
+
+## <span style="color: #ffffff;">`pointblank` en Spark {.light background-color="#ffffff"}
+
+:::columns
+:::{.column width="70%"}
+### Interrogar al agente
+
+```{r agente_inter, echo = TRUE, results='hide', `code-line-numbers`="11-13"}
+
+# crear agente
+agent <- 
+    create_agent(
+        tbl = nyc_tabla,
+        tbl_name = "big_tabla_nyc"
+    ) %>%
+    col_is_posix(vars(pickup_datetime)) %>%
+    col_vals_gt(vars(passenger_count), value = 0) %>%
+    col_vals_gt(vars(trip_distance), value = 0)
+
+# preguntar 
+agent %>%
+  interrogate()
+
+```
+
+
+:::
+::: {.column width="1%"}
+:::
+
+::: {.column width="29%"}
+### Pasos
+
+1. Se crea un "Agente"
+2. Se añaden [reglas de validación](https://rich-iannone.github.io/pointblank/articles/VALID-I.html)
+3. Interrogar al agente
+:::
+:::
+
+## <span style="color: #ffffff;">`pointblank` en Spark {.light background-color="#ffffff"}
+
+:::columns
+:::{.column width="60%"}
+### Ver resultado 
+![](images/res1.png)
+
+
+:::
+
+::: {.column width="40%"}
+<center><br><br><br> **Date/Time/Object Metadata**</center>
+:::
+:::
 
