@@ -47,7 +47,7 @@ title-slide-attributes:
 
 -   Me he copiado en gran parte de [aquí](https://meghansaha.github.io/exploring_validation/#/title-slide)
 
--   ¿Qué es validación de datos y por qué hay que ser cuidadosos? 
+-   ¿Qué es validación de datos y por qué hay que ser cuidadosos?
 
 -   Diferentes tipos de validación
 
@@ -55,22 +55,200 @@ title-slide-attributes:
 
 -   ¿Por qué `pointblank`?
 
--  `pointblank` en big data
+-   `pointblank` en big data
 :::
 
-## [Disclaimer]{style="color: #000000;"} {.dark background-color="#333333"}
+## [Aviso !!]{style="color: #000000;"} {.dark background-color="#333333"}
 
-<center>
+<br>
 
+::: columns
+::: {.column width="60%"}
 <h1 style="margin-top:5%">
 
 Estoy empezando a probar `pointblank`. No tengo mucha más idea de lo que voy descubriendo al hacer estas slides
 
 </h1>
-
-::: fragment
-![](images/phony.png){.memes width="500px" height="350px"}
 :::
 
-</center>
+::: {.column width="30%"}
+![](images/not_expert.jpeg){.memes width="250px" height="400px"}
+:::
+:::
+
+##  {.trans background-color="#ffffff" background-image="images/trans1.png" background-size="65%"}
+
+<h1>
+
+<center>[¿Validación?<br> ¿y por qué?]{style="color: #ffffff;"}</center>
+
+</h1>
+
+## <span style="color: #ffffff;">¿Validación? ¿y por qué? {.light background-color="#ffffff"}
+
+**Validación**: Chequear que algo que pensamos que está bien efectivamente lo esté 
+
+<br>
+
+::: fragment
+Hablando de datos podría ser cosas como:
+:::
+
+::: incremental
+-   Testear los datos de entrada
+-   Testear los datos de salida
+-   Testear los flujos de creación de datos
+-   Reglas de datos, etc. 
+:::
+
+
+
+## <span style="color: #ffffff;">Importancia de las validaciones {.light background-color="#ffffff" transition="none"}
+
+> Y esto es importante porque.... 
+
+<br>
+
+::: incremental
+-   Asunciones incorrectas sobre los datos puede ser costoso
+-   Los datos del mundo real en las empresas reales están mal... si, en todas
+-   Es muy probable que no haya ningún control, por mucho que te digan que todo está bien
+
+:::
+
+
+
+
+
+##  {.transdark background-color="#333333" background-image="images/trans2.png" background-size="65%"}
+
+<h1>
+
+<center>[Tipos de <br>Validaciones]{style="color: #000000;"}</center>
+
+</h1>
+
+
+## [Tipos de validación. Ejemplos]{style="color: #000000;"} {.dark background-color="#333333"}
+
+::: panel-tabset
+## Tipos de variables (poner icono)
+:::columns
+::: {.column width="50%"}
+<h3>Variable Type</h3>
+
+*"Is this variable the same class/type we are expecting?"*
+
+<br>
+
+**Example:** - Is R reading this as a numeric or integer variable, or is it just a string impostor?
+:::
+
+::: {.column width="50%"}
+<br>
+
+::: fragment
+```{r vartype, echo = TRUE}
+
+# Variable Type Check - Base R
+actual_number <- 2023
+fake_number <- "2023"
+
+#Actual Number?
+is.numeric(actual_number)
+
+#Actual Number?
+is.numeric(fake_number)
+
+```
+:::
+:::
+:::
+
+## Datos perdidos
+
+## Duplicados
+
+## Longitud strings
+
+## Formato
+
+## Rango de valores
+
+## siete
+
+## ocho
+:::
+
+
+##  {.trans background-color="#ffffff" background-image="images/trans3.png" background-size="65%"}
+
+<h1>
+
+<center>[¿Qué es esto de  `pointblank`?]{style="color: #ffffff;"}</center>
+
+</h1>
+
+
+
+## <span style="color: #ffffff;">¿Qué es esto de  `pointblank`? {.light background-color="#ffffff"}
+
+<br> Pointblank  es un paquete de R creado por [Rich Iannone](https://twitter.com/riannone) (author/maintainer) y Mauricio Vargas (author). Esta librería permite hacer validaciones y mantener un seguimiento de las mismas en R. 
+
+Se puede utilizar con dataframes o con orígenes remotos de datos como postgress, mysql, duckdb o incluso con sistemas distribuidos como spark
+
+
+[![](images/logo.svg){fig-alt="pointblank" fig-align="center"}](https://rich-iannone.github.io/pointblank/reference/index.html)
+
+## <span style="color: #ffffff;">¿Qué es esto de  `pointblank`? {.light background-color="#ffffff"}
+
+`pointblank`  tiene  **6** flujos de validación que se pueden ver en los siguientes enlaces.
+
+1.  [VALID-I: Data Quality Reporting](https://rich-iannone.github.io/pointblank/articles/VALID-I.html)
+
+2.  [VALID-II: Pipeline Data Validation](https://rich-iannone.github.io/pointblank/articles/VALID-II.html)
+
+::: {.fragment .semi-fade-out}
+3.  [VALID-III: Expectations in Unit Tests](https://rich-iannone.github.io/pointblank/articles/VALID-III.html)
+
+4.  [VALID-IV: Data Tests for Conditionals](https://rich-iannone.github.io/pointblank/articles/VALID-IV.html)
+:::
+
+::: {.fragment .semi-fade-out}
+5.  [VALID-V: Table Scan](https://rich-iannone.github.io/pointblank/articles/VALID-V.html)
+:::
+::: {.fragment .semi-fade-out}
+6.  [VALID-VI: R Markdown Document Validation](https://rich-iannone.github.io/pointblank/articles/VALID-VI.html)
+:::
+
+
+##  {.trans background-color="#ffffff" background-image="images/trans5.png" background-size="65%"}
+
+<h1>
+
+<center>[`pointblank` en Spark]{style="color: #ffffff;"}</center>
+
+</h1>
+
+
+## <span style="color: #ffffff;">`pointblank` en Spark {.light background-color="#ffffff"}
+
+### Example Data:
+
+```{r spark_read_data, echo = TRUE,  `code-line-numbers`="3|7-11"}
+library(tidyverse)
+library(sparklyr)
+library(pointblank)
+
+nyc_dir <-  "/media/hd1/nyc-taxi/"
+
+sc <- spark_connect(master = "local",
+                    spark_home = "~/spark/spark-3.0.0-bin-hadoop2.7/")
+
+nyc_tabla <- sc |> 
+    spark_read_parquet(str_glue("{nyc_dir}year=2020/month=1/part-0.parquet"))
+
+nyc_tabla
+
+```
 
