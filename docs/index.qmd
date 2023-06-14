@@ -118,9 +118,11 @@ Hablando de datos podría ser cosas como:
 
 :::
 :::
-::: {.column width="50%"}
+:::{.column width="5%"}
+:::
+::: {.column width="45%"}
 :::fragment
-![](images/edades_negativas.jpg)
+![](images/edades_negativas.jpg){.memes width="230px" height="500px"}
 :::
 :::
 :::
