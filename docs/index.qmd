@@ -1,6 +1,6 @@
 ---
-title: "Validación de datos con pointblank"
-subtitle: "\"With The  `pointblank`  Package\""
+title: "Validación de datos con pointblank (en spark)"
+subtitle: "\"Usando el paquete `pointblank`\""
 author: "Cañadas Reche, José Luis"
 institute: "Grupo usuarios de R Madrid"
 date: "2023-06-29"
@@ -30,11 +30,11 @@ title-slide-attributes:
 
 ::: columns
 ::: {.column width="40%"}
-![](images/profile2.jpg){#headshot}
+![](images/profile2.jpg){#headshot height="500px"}
 :::
 
 ::: {.column width="60%"}
--   Soy José Luis Cañadas 👋🏾
+-   Soy José Luis Cañadas Reche 👋
 -   Data Scientist/ Estadístico 💻
 -   ️Orange Spain 🍊
 :::
@@ -86,7 +86,7 @@ Estoy empezando a probar `pointblank`. No tengo mucha más idea de lo que voy de
 
 ## <span style="color: #ffffff;">¿Validación? ¿y por qué? {.light background-color="#ffffff"}
 
-**Validación**: Chequear que algo que pensamos que está bien efectivamente lo esté 
+**Validación**: Chequear que algo que pensamos que está bien efectivamente lo esté
 
 <br>
 
@@ -98,16 +98,14 @@ Hablando de datos podría ser cosas como:
 -   Testear los datos de entrada
 -   Testear los datos de salida
 -   Testear los flujos de creación de datos
--   Reglas de datos, etc. 
+-   Reglas de datos, etc.
 :::
-
-
 
 ## <span style="color: #ffffff;">Importancia de las validaciones {.light background-color="#ffffff" transition="none"}
 
-> Y esto es importante porque.... 
+> Y esto es importante porque....
 
-:::columns
+::: columns
 ::: {.column width="50%"}
 <br>
 
@@ -115,20 +113,18 @@ Hablando de datos podría ser cosas como:
 -   Asunciones incorrectas sobre los datos puede ser costoso
 -   Los datos del mundo real en las empresas reales están mal... si, en todas
 -   Es muy probable que no haya ningún control, por mucho que te digan que todo está bien
+:::
+:::
 
+::: {.column width="5%"}
 :::
-:::
-:::{.column width="5%"}
-:::
+
 ::: {.column width="45%"}
-:::fragment
+::: fragment
 ![](images/edades_negativas.jpg){.memes width="230px" height="500px"}
 :::
 :::
 :::
-
-
-
 
 ##  {.transdark background-color="#333333" background-image="images/trans2.png" background-size="65%"}
 
@@ -138,20 +134,20 @@ Hablando de datos podría ser cosas como:
 
 </h1>
 
-
 ## [Tipos de validación. Ejemplos]{style="color: #000000;"} {.dark background-color="#333333"}
 
 ::: panel-tabset
-## Tipos de variables (poner icono)
-:::columns
-::: {.column width="50%"}
-<h3>Variable Type</h3>
+## Tipos de variables
 
-*"Is this variable the same class/type we are expecting?"*
+::: columns
+::: {.column width="50%"}
+<h3>Tipo de la variable</h3>
+
+*"¿La variable es del tipo correcto"*
 
 <br>
 
-**Example:** - Is R reading this as a numeric or integer variable, or is it just a string impostor?
+**Example:** - A veces vienen datos que parecen un número y no lo son.
 :::
 
 ::: {.column width="50%"}
@@ -160,15 +156,44 @@ Hablando de datos podría ser cosas como:
 ::: fragment
 ```{r vartype, echo = TRUE}
 
-# Variable Type Check - Base R
-actual_number <- 2023
-fake_number <- "2023"
+# Check de variable R
+anyo_actual_number <- 2023
+falso_numero <- "2023"
 
 #Actual Number?
-is.numeric(actual_number)
+is.numeric(anyo_actual_number)
 
 #Actual Number?
-is.numeric(fake_number)
+is.numeric(falso_numero)
+
+```
+:::
+:::
+:::
+
+## Valores esperados/ permitidos
+
+::: columns
+::: {.column width="50%"}
+<h3>Valor esperado</h3>
+
+*"¿Es el valor de la variable el que se espera?"*
+
+<br>
+
+**Ejemplo:** - ¿Se puede chequear que el valor de la variable tiene sentido según el contexto?
+:::
+
+::: {.column width="50%"}
+<br>
+
+::: fragment
+```{r expvalue, echo = TRUE}
+
+edad <- -70
+
+# ¿Es la edad numérica y con valores positivos? 
+is.numeric(edad) & edad > 0 
 
 ```
 :::
@@ -177,42 +202,90 @@ is.numeric(fake_number)
 
 ## Datos perdidos
 
-## Duplicados
+::: columns
+::: {.column width="50%"}
+<h3>Datos perdidos</h3>
 
-## Longitud strings
+*"¿hay algún dato perdido que debería estar informado?*
 
-## Formato
+<br>
 
-## Rango de valores
-
-## siete
-
-## ocho
+**Ejemplo:** - ¿Faltan datos perdidos en id / pk ?
 :::
 
+::: {.column width="50%"}
+::: fragment
+```{r missingdata_prep, echo = FALSE}
+# Missing Data Check - Base R
+clientes <- data.frame("customer_id" = c(123,345,NA),
+                           "tarifa_tele" = c("Si","No", "No"))
+
+```
+
+```{r missingdata, echo = TRUE}
+clientes
+
+# ¿Hay algún dlientes sin id y que no tenga tafifa tele
+which(is.na(clientes$customer_id)) == which(clientes$tarifa_tele == "No")
+
+```
+:::
+:::
+:::
+
+## Checks logicos
+
+::: columns
+::: {.column width="50%"}
+<h3>Check lógicos</h3>
+
+*"¿los nuevos datos se corresponden con los antiguos?"*
+:::
+
+::: {.column width="50%"}
+<br>
+
+::: fragment
+```{r logig_prep, echo =FALSE}
+
+viejos_datos <- data.frame(id = sample(1:10))
+nuevos_datos <- data.frame(id = sample(1:10))
+
+```
+
+```{r logicheck, echo = TRUE}
+
+# Son los datos distintos ? 
+
+!identical(viejos_datos, nuevos_datos)
+
+```
+:::
+:::
+:::
+
+## otra
+:::
 
 ##  {.trans background-color="#ffffff" background-image="images/trans3.png" background-size="65%"}
 
 <h1>
 
-<center>[¿Qué es esto de  `pointblank`?]{style="color: #ffffff;"}</center>
+<center>[¿Qué es esto de `pointblank`?]{style="color: #ffffff;"}</center>
 
 </h1>
 
+## <span style="color: #ffffff;">¿Qué es esto de `pointblank`? {.light background-color="#ffffff"}
 
-
-## <span style="color: #ffffff;">¿Qué es esto de  `pointblank`? {.light background-color="#ffffff"}
-
-<br> Pointblank  es un paquete de R creado por [Rich Iannone](https://twitter.com/riannone) (author/maintainer) y Mauricio Vargas (author). Esta librería permite hacer validaciones y mantener un seguimiento de las mismas en R. 
+<br> Pointblank es un paquete de R creado por [Rich Iannone](https://twitter.com/riannone) (author/maintainer) y Mauricio Vargas (author). Esta librería permite hacer validaciones y mantener un seguimiento de las mismas en R.
 
 Se puede utilizar con dataframes o con orígenes remotos de datos como postgress, mysql, duckdb o incluso con sistemas distribuidos como spark
 
-
 [![](images/logo.svg){fig-alt="pointblank" fig-align="center"}](https://rich-iannone.github.io/pointblank/reference/index.html)
 
-## <span style="color: #ffffff;">¿Qué es esto de  `pointblank`? {.light background-color="#ffffff"}
+## <span style="color: #ffffff;">¿Qué es esto de `pointblank`? {.light background-color="#ffffff"}
 
-`pointblank`  tiene  **6** flujos de validación que se pueden ver en los siguientes enlaces.
+`pointblank` tiene **6** flujos de validación que se pueden ver en los siguientes enlaces.
 
 1.  [VALID-I: Data Quality Reporting](https://rich-iannone.github.io/pointblank/articles/VALID-I.html)
 
@@ -227,10 +300,29 @@ Se puede utilizar con dataframes o con orígenes remotos de datos como postgress
 ::: {.fragment .semi-fade-out}
 5.  [VALID-V: Table Scan](https://rich-iannone.github.io/pointblank/articles/VALID-V.html)
 :::
+
 ::: {.fragment .semi-fade-out}
 6.  [VALID-VI: R Markdown Document Validation](https://rich-iannone.github.io/pointblank/articles/VALID-VI.html)
 :::
 
+##  {.transdark background-color="#333333" background-image="images/trans4.png" background-size="65%"}
+
+<h1>
+
+<center>[¿Por qué `pointblank`?]{style="color: #000000;"}</center>
+
+</h1>
+
+## <span style="color: #000000;">¿Por qué `pointblank`? {.dark background-color="#333333"}
+
+> Existen otras librerías como  [`validate`](https://github.com/data-cleaning/validate) or [`testthat`](https://testthat.r-lib.org/) para validación y test. 
+
+:::fragment
+* `pointblank` permite hacer lo mismo, pero permite hacer reporting fácilmente. 
+* Filosofía `tidyverse`
+* Permite orígenes remotos de datos usando DBI
+* Se puede utilizar en Bigdata usando `sparklyr` (me centraré en esa parte)
+:::
 
 ##  {.trans background-color="#ffffff" background-image="images/trans5.png" background-size="65%"}
 
@@ -255,7 +347,7 @@ nyc_dir <-  "/media/hd1/nyc-taxi/"
 sc <- spark_connect(master = "local",
                     spark_home = "~/spark/spark-3.0.0-bin-hadoop2.7/")
 
-nyc_tabla <- sc |> 
+nyc_tabla <- sc  |>  
     spark_read_parquet(str_glue("{nyc_dir}year=2020/month=1/part-0.parquet"))
 
 nyc_tabla
@@ -264,8 +356,8 @@ nyc_tabla
 
 ## <span style="color: #ffffff;">`pointblank` en Spark {.light background-color="#ffffff"}
 
-:::columns
-:::{.column width="70%"}
+::: columns
+::: {.column width="70%"}
 ### Encadenar reglas
 
 ```{r create_agent1,  echo = TRUE, results='hide', `code-line-numbers`="1-5|6-8"}
@@ -273,29 +365,28 @@ agent <-
     create_agent(
         tbl = nyc_tabla,
         tbl_name = "big_tabla_nyc"
-    ) %>%
-    col_is_posix(vars(pickup_datetime)) %>%
-    col_vals_gt(vars(passenger_count), value = 0) %>%
+    )  |>
+    col_is_posix(vars(pickup_datetime))  |>
+    col_vals_gt(vars(passenger_count), value = 0)  |>
     col_vals_gt(vars(trip_distance), value = 0)
 ```
-
-
 :::
+
 ::: {.column width="1%"}
 :::
 
 ::: {.column width="29%"}
 ### Pasos
 
-1. Se crea un "Agente"
-2. Se añaden [reglas de validación](https://rich-iannone.github.io/pointblank/articles/VALID-I.html)
+1.  Se crea un "Agente"
+2.  Se añaden [reglas de validación](https://rich-iannone.github.io/pointblank/articles/VALID-I.html)
 :::
 :::
 
 ## <span style="color: #ffffff;">`pointblank` en Spark {.light background-color="#ffffff"}
 
-:::columns
-:::{.column width="70%"}
+::: columns
+::: {.column width="70%"}
 ### Interrogar al agente
 
 ```{r agente_inter, echo = TRUE, results='hide', `code-line-numbers`="11-13"}
@@ -305,39 +396,37 @@ agent <-
     create_agent(
         tbl = nyc_tabla,
         tbl_name = "big_tabla_nyc"
-    ) %>%
-    col_is_posix(vars(pickup_datetime)) %>%
-    col_vals_gt(vars(passenger_count), value = 0) %>%
+    )  |>
+    col_is_posix(vars(pickup_datetime))  |>
+    col_vals_gt(vars(passenger_count), value = 0)  |>
     col_vals_gt(vars(trip_distance), value = 0)
 
 # preguntar 
-agent %>%
+agent  |>
   interrogate()
 
 ```
-
-
 :::
+
 ::: {.column width="1%"}
 :::
 
 ::: {.column width="29%"}
 ### Pasos
 
-1. Se crea un "Agente"
-2. Se añaden [reglas de validación](https://rich-iannone.github.io/pointblank/articles/VALID-I.html)
-3. Interrogar al agente
+1.  Se crea un "Agente"
+2.  Se añaden [reglas de validación](https://rich-iannone.github.io/pointblank/articles/VALID-I.html)
+3.  Interrogar al agente
 :::
 :::
 
 ## <span style="color: #ffffff;">`pointblank` en Spark {.light background-color="#ffffff"}
 
-:::columns
-:::{.column width="60%"}
-### Ver resultado 
+::: columns
+::: {.column width="60%"}
+### Ver resultado
+
 ![](images/res1.png)
-
-
 :::
 
 ::: {.column width="40%"}
@@ -345,3 +434,149 @@ agent %>%
 :::
 :::
 
+## <span style="color: #ffffff;">`pointblank` en Spark {.light background-color="#ffffff"}
+
+::: columns
+::: {.column width="70%"}
+### Varias columnas y sintaxis tidyselect
+
+```{r agente_inter_2, echo = TRUE, results='hide', `code-line-numbers`="7-10|13-14"}
+
+agent2 <- 
+    create_agent(
+        tbl = nyc_tabla,
+        tbl_name = "big_tabla_nyc"
+    )  |>
+    col_is_posix(pickup_datetime)  |>
+    col_vals_gt(tip_amount:total_amount, value = 0)  |>
+    col_vals_gt(c(pickup_location_id, dropoff_location_id), value = 0)|> 
+    col_vals_between(trip_distance, left = 0, right = 200, inclusive = c(FALSE, TRUE))
+
+# preguntar 
+agent2  |>
+  interrogate()
+
+```
+:::
+
+::: {.column width="1%"}
+:::
+
+::: {.column width="29%"}
+
+### Syntactic sugar 
+
+1.  var1:var20 
+2.  c(var1, var30) sin  comillas
+:::
+:::
+
+## <span style="color: #ffffff;">`pointblank` en Spark {.light background-color="#ffffff"}
+
+### Ver resultado
+
+![](images/res2.png)
+
+## <span style="color: #ffffff;">`pointblank` en Spark {.light background-color="#ffffff"}
+
+::: columns
+::: {.column width="60%"}
+### Action levels
+
+```{r action_levels, echo = TRUE, results='hide', `code-line-numbers`="2-5"}
+
+al <- action_levels(
+    warn_at = 0.05,
+    stop_at = 0.2
+) 
+
+agent2_with_al <- 
+    create_agent(
+        tbl = nyc_tabla,
+        tbl_name = "big_tabla_nyc", 
+        actions = al
+    )  |>
+    col_is_posix(pickup_datetime)  |>
+    col_vals_gt(tip_amount:total_amount, value = 0)  |>
+    col_vals_gt(c(pickup_location_id, dropoff_location_id), value = 0)|> 
+    col_vals_between(trip_distance, left = 0, right = 200, inclusive = c(FALSE, TRUE))
+
+# preguntar 
+agent2_with_al  |>
+  interrogate()
+
+```
+:::
+
+::: {.column width="1%"}
+:::
+
+::: {.column width="39%"}
+
+<br>
+
+1. Entre 0 y 1 ➡ Warning cuando se supera la proporción de casos que incumple la regla
+2.  Mayor que 1  ➡ Warning cuando se incumple la regla en n casos. 
+3. Se pueden especificar actions levels en cada variable, pero la de stop_at se comporta diferente ➡ Se interrumpe el flujo
+:::
+:::
+
+## <span style="color: #ffffff;">`pointblank` en Spark {.light background-color="#ffffff"}
+
+### Con `action levels`
+
+![](images/res3.png)
+
+
+## <span style="color: #ffffff;">`pointblank` en Spark {.light background-color="#ffffff"}
+
+::: columns
+::: {.column width="70%"}
+### Usar el agente en otra tabla
+
+```{r agente_set_table, echo = TRUE, results='hide', `code-line-numbers`="1-2|5-6|7-10"}
+
+nyc_tabla_202201 <-  sc  |>  
+    spark_read_parquet(str_glue("{nyc_dir}year=2022/month=1/part-0.parquet")) 
+
+
+nuevo_agente <-  agent2_with_al |> 
+    set_tbl(nyc_tabla_202201, 
+            tbl_name = "Validacion Enero 2022") 
+
+# preguntar 
+nuevo_agente  |>
+  interrogate()
+
+```
+:::
+
+::: {.column width="1%"}
+:::
+
+::: {.column width="29%"}
+
+<br>
+
+1. Simplemente se setea nueva tabla
+2. Se interroga al agente para devolver el informe
+:::
+:::
+
+## <span style="color: #ffffff;">`pointblank` en Spark {.light background-color="#ffffff"}
+
+### Nuevo reporte
+
+![](images/res4.png)
+
+
+## <span style="color: #ffffff;">`pointblank` en Spark {.light background-color="#ffffff"}
+
+:::fragment
+* Hay más opciones si  se trabaja con data.frames o conexiones a bases de datos
+    * Guardar especificaciones del agente en yaml
+    * Guardar cadenas de conexión en yaml
+* Crear un informe de la tabla con `scan_data`
+* Pasar validaciones a tabla sin crear agente (en spark no funciona)
+* Utilizar `pointblank` para test unitarios
+:::

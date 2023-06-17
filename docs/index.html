@@ -6,17 +6,17 @@
 <script src="index_files/libs/quarto-html/tippy.umd.min.js"></script>
 <link href="index_files/libs/quarto-html/tippy.css" rel="stylesheet">
 <link href="index_files/libs/quarto-html/quarto-html.min.css" rel="stylesheet" data-mode="light">
-<link href="index_files/libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles"><meta charset="utf-8">
-  <meta name="generator" content="quarto-1.2.269">
-
-  <meta name="author" content="Cañadas Reche, José Luis">
-  <title>Validación de datos con pointblank</title>
-  <meta name="apple-mobile-web-app-capable" content="yes">
-  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui">
-  <link rel="stylesheet" href="index_files/libs/revealjs/dist/reset.css">
-  <link rel="stylesheet" href="index_files/libs/revealjs/dist/reveal.css">
-  <style>
+<link href="index_files/libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles"><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.2.269">
+<meta name="author" content="Cañadas Reche, José Luis">
+<title>Validación de datos con pointblank (en spark)</title>
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui">
+<link rel="stylesheet" href="index_files/libs/revealjs/dist/reset.css">
+<link rel="stylesheet" href="index_files/libs/revealjs/dist/reveal.css">
+<style>
     code{white-space: pre-wrap;}
     span.smallcaps{font-variant: small-caps;}
     div.columns{display: flex; gap: min(4vw, 1.5em);}
@@ -93,13 +93,13 @@
     code span.vs { color: #032f62; } /* VerbatimString */
     code span.wa { color: #ff5555; } /* Warning */
   </style>
-  <link rel="stylesheet" href="index_files/libs/revealjs/dist/theme/quarto.css" id="theme">
-  <link rel="stylesheet" href="theme.css">
-  <link href="index_files/libs/revealjs/plugin/quarto-line-highlight/line-highlight.css" rel="stylesheet">
-  <link href="index_files/libs/revealjs/plugin/reveal-menu/menu.css" rel="stylesheet">
-  <link href="index_files/libs/revealjs/plugin/reveal-menu/quarto-menu.css" rel="stylesheet">
-  <link href="index_files/libs/revealjs/plugin/quarto-support/footer.css" rel="stylesheet">
-  <style type="text/css">
+<link rel="stylesheet" href="index_files/libs/revealjs/dist/theme/quarto.css" id="theme">
+<link rel="stylesheet" href="theme.css">
+<link href="index_files/libs/revealjs/plugin/quarto-line-highlight/line-highlight.css" rel="stylesheet">
+<link href="index_files/libs/revealjs/plugin/reveal-menu/menu.css" rel="stylesheet">
+<link href="index_files/libs/revealjs/plugin/reveal-menu/quarto-menu.css" rel="stylesheet">
+<link href="index_files/libs/revealjs/plugin/quarto-support/footer.css" rel="stylesheet">
+<style type="text/css">
 
   .callout {
     margin-top: 1em;
@@ -296,7 +296,7 @@
   }
 
   </style>
-  <style type="text/css">
+<style type="text/css">
     .reveal div.sourceCode {
       margin: 0;
       overflow: auto;
@@ -388,9 +388,8 @@
   <div class="reveal">
     <div class="slides">
 
-<section id="title-slide" data-background-position="right" data-background-size="45%" class="quarto-title-block center">
-  <h1 class="title">Validación de datos con pointblank</h1>
-  <p class="subtitle">“With The <code>pointblank</code> Package”</p>
+<section id="title-slide" data-background-position="right" data-background-size="45%" class="quarto-title-block center"><h1 class="title">Validación de datos con pointblank (en spark)</h1>
+  <p class="subtitle">“Usando el paquete <code>pointblank</code>”</p>
 
 <div class="quarto-title-authors">
 <div class="quarto-title-author">
@@ -404,24 +403,20 @@ Cañadas Reche, José Luis
 </div>
 
   <p class="date">6/29/23</p>
-</section>
-<section id="sobre-mi" class="slide level2 dark" data-background-color="#333333">
-<h2><span style="color: #000000;">Sobre mi</span></h2>
+</section><section id="sobre-mi" class="slide level2 dark" data-background-color="#333333"><h2><span style="color: #000000;">Sobre mi</span></h2>
 <p><br></p>
 <div class="columns">
 <div class="column" style="width:40%;">
-<p><img data-src="images/profile2.jpg" id="headshot"></p>
+<p><img data-src="images/profile2.jpg" id="headshot" height="500"></p>
 </div><div class="column" style="width:60%;">
 <ul>
-<li>Soy José Luis Cañadas 👋🏾</li>
+<li>Soy José Luis Cañadas Reche 👋</li>
 <li>Data Scientist/ Estadístico 💻</li>
 <li>️Orange Spain 🍊</li>
 </ul>
 </div>
 </div>
-</section>
-<section id="qué-quiero-contar" class="slide level2 light" data-background-color="#ffffff">
-<h2><span style="color: #ffffff;">Qué quiero contar</span></h2>
+</section><section id="qué-quiero-contar" class="slide level2 light" data-background-color="#ffffff"><h2><span style="color: #ffffff;">Qué quiero contar</span></h2>
 <div>
 <p><br></p>
 <ul>
@@ -433,30 +428,25 @@ Cañadas Reche, José Luis
 <li class="fragment"><p><code>pointblank</code> en big data</p></li>
 </ul>
 </div>
-</section>
-<section id="aviso" class="slide level2 dark" data-background-color="#333333">
-<h2><span style="color: #000000;">Aviso !!</span></h2>
+</section><section id="aviso" class="slide level2 dark" data-background-color="#333333"><h2><span style="color: #000000;">Aviso !!</span></h2>
 <p><br></p>
 <div class="columns">
 <div class="column" style="width:60%;">
 <h1 style="margin-top:5%">
-<p>Estoy empezando a probar <code>pointblank</code>. No tengo mucha más idea de lo que voy descubriendo al hacer estas slides</p>
 </h1>
+<p>Estoy empezando a probar <code>pointblank</code>. No tengo mucha más idea de lo que voy descubriendo al hacer estas slides</p>
+
 </div><div class="column" style="width:30%;">
 <p><img data-src="images/not_expert.jpeg" class="memes" width="250" height="400"></p>
 </div>
 </div>
-</section>
-<section id="section" class="slide level2 trans" data-background-color="#ffffff" data-background-image="images/trans1.png" data-background-size="65%">
-<h2></h2>
+</section><section id="section" class="slide level2 trans" data-background-color="#ffffff" data-background-image="images/trans1.png" data-background-size="65%"><h2></h2>
 <h1>
 <center>
 <span style="color: #ffffff;">¿Validación?<br> ¿y por qué?</span>
 </center>
 </h1>
-</section>
-<section id="validación-y-por-qué" class="slide level2 light" data-background-color="#ffffff">
-<h2><span style="color: #ffffff;">¿Validación? ¿y por qué?</span></h2>
+</section><section id="validación-y-por-qué" class="slide level2 light" data-background-color="#ffffff"><h2><span style="color: #ffffff;">¿Validación? ¿y por qué?</span></h2>
 <p><strong>Validación</strong>: Chequear que algo que pensamos que está bien efectivamente lo esté</p>
 <p><br></p>
 <div class="fragment">
@@ -470,9 +460,7 @@ Cañadas Reche, José Luis
 <li class="fragment">Reglas de datos, etc.</li>
 </ul>
 </div>
-</section>
-<section id="importancia-de-las-validaciones" class="slide level2 light" data-background-color="#ffffff" data-transition="none">
-<h2><span style="color: #ffffff;">Importancia de las validaciones</span></h2>
+</section><section id="importancia-de-las-validaciones" class="slide level2 light" data-background-color="#ffffff" data-transition="none"><h2><span style="color: #ffffff;">Importancia de las validaciones</span></h2>
 <blockquote>
 <p>Y esto es importante porque….</p>
 </blockquote>
@@ -494,44 +482,46 @@ Cañadas Reche, José Luis
 </div>
 </div>
 </div>
-</section>
-<section id="section-1" class="slide level2 transdark" data-background-color="#333333" data-background-image="images/trans2.png" data-background-size="65%">
-<h2></h2>
+</section><section id="section-1" class="slide level2 transdark" data-background-color="#333333" data-background-image="images/trans2.png" data-background-size="65%"><h2></h2>
 <h1>
 <center>
 <span style="color: #000000;">Tipos de <br>Validaciones</span>
 </center>
 </h1>
-</section>
-<section id="tipos-de-validación.-ejemplos" class="slide level2 dark" data-background-color="#333333">
-<h2><span style="color: #000000;">Tipos de validación. Ejemplos</span></h2>
+</section><section id="tipos-de-validación.-ejemplos" class="slide level2 dark" data-background-color="#333333"><h2><span style="color: #000000;">Tipos de validación. Ejemplos</span></h2>
 <div class="panel-tabset">
-<ul id="tabset-1" class="panel-tabset-tabby"><li><a data-tabby-default="" href="#tabset-1-1">Tipos de variables (poner icono)</a></li><li><a href="#tabset-1-2">Datos perdidos</a></li><li><a href="#tabset-1-3">Duplicados</a></li><li><a href="#tabset-1-4">Longitud strings</a></li><li><a href="#tabset-1-5">Formato</a></li><li><a href="#tabset-1-6">Rango de valores</a></li><li><a href="#tabset-1-7">siete</a></li><li><a href="#tabset-1-8">ocho</a></li></ul>
+<ul id="tabset-1" class="panel-tabset-tabby">
+<li><a data-tabby-default="" href="#tabset-1-1">Tipos de variables</a></li>
+<li><a href="#tabset-1-2">Valores esperados/ permitidos</a></li>
+<li><a href="#tabset-1-3">Datos perdidos</a></li>
+<li><a href="#tabset-1-4">Checks logicos</a></li>
+<li><a href="#tabset-1-5">otra</a></li>
+</ul>
 <div class="tab-content">
 <div id="tabset-1-1">
 <div class="columns">
 <div class="column" style="width:50%;">
 <h3>
-Variable Type
+Tipo de la variable
 </h3>
-<p><em>“Is this variable the same class/type we are expecting?”</em></p>
+<p><em>“¿La variable es del tipo correcto”</em></p>
 <p><br></p>
-<p><strong>Example:</strong> - Is R reading this as a numeric or integer variable, or is it just a string impostor?</p>
+<p><strong>Example:</strong> - A veces vienen datos que parecen un número y no lo son.</p>
 </div><div class="column" style="width:50%;">
 <p><br></p>
 <div class="fragment">
 <div class="cell">
-<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1"></a><span class="co"># Variable Type Check - Base R</span></span>
-<span id="cb1-2"><a href="#cb1-2"></a>actual_number <span class="ot">&lt;-</span> <span class="dv">2023</span></span>
-<span id="cb1-3"><a href="#cb1-3"></a>fake_number <span class="ot">&lt;-</span> <span class="st">"2023"</span></span>
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1"></a><span class="co"># Check de variable R</span></span>
+<span id="cb1-2"><a href="#cb1-2"></a>anyo_actual_number <span class="ot">&lt;-</span> <span class="dv">2023</span></span>
+<span id="cb1-3"><a href="#cb1-3"></a>falso_numero <span class="ot">&lt;-</span> <span class="st">"2023"</span></span>
 <span id="cb1-4"><a href="#cb1-4"></a></span>
 <span id="cb1-5"><a href="#cb1-5"></a><span class="co">#Actual Number?</span></span>
-<span id="cb1-6"><a href="#cb1-6"></a><span class="fu">is.numeric</span>(actual_number)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb1-6"><a href="#cb1-6"></a><span class="fu">is.numeric</span>(anyo_actual_number)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] TRUE</code></pre>
 </div>
 <div class="sourceCode cell-code" id="cb3"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1"></a><span class="co">#Actual Number?</span></span>
-<span id="cb3-2"><a href="#cb3-2"></a><span class="fu">is.numeric</span>(fake_number)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb3-2"><a href="#cb3-2"></a><span class="fu">is.numeric</span>(falso_numero)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] FALSE</code></pre>
 </div>
@@ -541,45 +531,103 @@ Variable Type
 </div>
 </div>
 <div id="tabset-1-2">
-
+<div class="columns">
+<div class="column" style="width:50%;">
+<h3>
+Valor esperado
+</h3>
+<p><em>“¿Es el valor de la variable el que se espera?”</em></p>
+<p><br></p>
+<p><strong>Ejemplo:</strong> - ¿Se puede chequear que el valor de la variable tiene sentido según el contexto?</p>
+</div><div class="column" style="width:50%;">
+<p><br></p>
+<div class="fragment">
+<div class="cell">
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1"></a>edad <span class="ot">&lt;-</span> <span class="sc">-</span><span class="dv">70</span></span>
+<span id="cb5-2"><a href="#cb5-2"></a></span>
+<span id="cb5-3"><a href="#cb5-3"></a><span class="co"># ¿Es la edad numérica y con valores positivos? </span></span>
+<span id="cb5-4"><a href="#cb5-4"></a><span class="fu">is.numeric</span>(edad) <span class="sc">&amp;</span> edad <span class="sc">&gt;</span> <span class="dv">0</span> </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] FALSE</code></pre>
+</div>
+</div>
+</div>
+</div>
+</div>
 </div>
 <div id="tabset-1-3">
+<div class="columns">
+<div class="column" style="width:50%;">
+<h3>
+Datos perdidos
+</h3>
+<p><em>“¿hay algún dato perdido que debería estar informado?</em></p>
+<p><br></p>
+<p><strong>Ejemplo:</strong> - ¿Faltan datos perdidos en id / pk ?</p>
+</div><div class="column" style="width:50%;">
+<div class="fragment">
+<div class="cell">
 
 </div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1"></a>clientes</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>  customer_id tarifa_tele
+1         123          Si
+2         345          No
+3          NA          No</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1"></a><span class="co"># ¿Hay algún dlientes sin id y que no tenga tafifa tele</span></span>
+<span id="cb9-2"><a href="#cb9-2"></a><span class="fu">which</span>(<span class="fu">is.na</span>(clientes<span class="sc">$</span>customer_id)) <span class="sc">==</span> <span class="fu">which</span>(clientes<span class="sc">$</span>tarifa_tele <span class="sc">==</span> <span class="st">"No"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] FALSE  TRUE</code></pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
 <div id="tabset-1-4">
+<div class="columns">
+<div class="column" style="width:50%;">
+<h3>
+Check lógicos
+</h3>
+<p><em>“¿los nuevos datos se corresponden con los antiguos?”</em></p>
+</div><div class="column" style="width:50%;">
+<p><br></p>
+<div class="fragment">
+<div class="cell">
 
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1"></a><span class="co"># Son los datos distintos ? </span></span>
+<span id="cb11-2"><a href="#cb11-2"></a></span>
+<span id="cb11-3"><a href="#cb11-3"></a><span class="sc">!</span><span class="fu">identical</span>(viejos_datos, nuevos_datos)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] TRUE</code></pre>
+</div>
+</div>
+</div>
+</div>
+</div>
 </div>
 <div id="tabset-1-5">
 
 </div>
-<div id="tabset-1-6">
-
-</div>
-<div id="tabset-1-7">
-
-</div>
-<div id="tabset-1-8">
-
 </div>
 </div>
-</div>
-</section>
-<section id="section-2" class="slide level2 trans" data-background-color="#ffffff" data-background-image="images/trans3.png" data-background-size="65%">
-<h2></h2>
+</section><section id="section-2" class="slide level2 trans" data-background-color="#ffffff" data-background-image="images/trans3.png" data-background-size="65%"><h2></h2>
 <h1>
 <center>
 <span style="color: #ffffff;">¿Qué es esto de <code>pointblank</code>?</span>
 </center>
 </h1>
-</section>
-<section id="qué-es-esto-de-pointblank" class="slide level2 light" data-background-color="#ffffff">
-<h2><span style="color: #ffffff;">¿Qué es esto de <code>pointblank</code>?</span></h2>
+</section><section id="qué-es-esto-de-pointblank" class="slide level2 light" data-background-color="#ffffff"><h2><span style="color: #ffffff;">¿Qué es esto de <code>pointblank</code>?</span></h2>
 <p><br> Pointblank es un paquete de R creado por <a href="https://twitter.com/riannone">Rich Iannone</a> (author/maintainer) y Mauricio Vargas (author). Esta librería permite hacer validaciones y mantener un seguimiento de las mismas en R.</p>
 <p>Se puede utilizar con dataframes o con orígenes remotos de datos como postgress, mysql, duckdb o incluso con sistemas distribuidos como spark</p>
 
-<img data-src="images/logo.svg" alt="pointblank" class="r-stretch quarto-figure-center"></section>
-<section id="qué-es-esto-de-pointblank-1" class="slide level2 light" data-background-color="#ffffff">
-<h2><span style="color: #ffffff;">¿Qué es esto de <code>pointblank</code>?</span></h2>
+<img data-src="images/logo.svg" alt="pointblank" class="r-stretch quarto-figure-center"></section><section id="qué-es-esto-de-pointblank-1" class="slide level2 light" data-background-color="#ffffff"><h2><span style="color: #ffffff;">¿Qué es esto de <code>pointblank</code>?</span></h2>
 <p><code>pointblank</code> tiene <strong>6</strong> flujos de validación que se pueden ver en los siguientes enlaces.</p>
 <ol type="1">
 <li><p><a href="https://rich-iannone.github.io/pointblank/articles/VALID-I.html">VALID-I: Data Quality Reporting</a></p></li>
@@ -601,34 +649,50 @@ Variable Type
 <li><a href="https://rich-iannone.github.io/pointblank/articles/VALID-VI.html">VALID-VI: R Markdown Document Validation</a></li>
 </ol>
 </div>
-</section>
-<section id="section-3" class="slide level2 trans" data-background-color="#ffffff" data-background-image="images/trans5.png" data-background-size="65%">
-<h2></h2>
+</section><section id="section-3" class="slide level2 transdark" data-background-color="#333333" data-background-image="images/trans4.png" data-background-size="65%"><h2></h2>
+<h1>
+<center>
+<span style="color: #000000;">¿Por qué <code>pointblank</code>?</span>
+</center>
+</h1>
+</section><section id="por-qué-pointblank" class="slide level2 dark" data-background-color="#333333"><h2><span style="color: #000000;">¿Por qué <code>pointblank</code>?</span></h2>
+<blockquote>
+<p>Existen otras librerías como <a href="https://github.com/data-cleaning/validate"><code>validate</code></a> or <a href="https://testthat.r-lib.org/"><code>testthat</code></a> para validación y test.</p>
+</blockquote>
+<div class="fragment">
+<ul>
+<li>
+<code>pointblank</code> permite hacer lo mismo, pero permite hacer reporting fácilmente.</li>
+<li>Filosofía <code>tidyverse</code>
+</li>
+<li>Permite orígenes remotos de datos usando DBI</li>
+<li>Se puede utilizar en Bigdata usando <code>sparklyr</code> (me centraré en esa parte)</li>
+</ul>
+</div>
+</section><section id="section-4" class="slide level2 trans" data-background-color="#ffffff" data-background-image="images/trans5.png" data-background-size="65%"><h2></h2>
 <h1>
 <center>
 <span style="color: #ffffff;"><code>pointblank</code> en Spark</span>
 </center>
 </h1>
-</section>
-<section id="pointblank-en-spark" class="slide level2 light" data-background-color="#ffffff">
-<h2><span style="color: #ffffff;"><code>pointblank</code> en Spark</span></h2>
+</section><section id="pointblank-en-spark" class="slide level2 light" data-background-color="#ffffff"><h2><span style="color: #ffffff;"><code>pointblank</code> en Spark</span></h2>
 <h3 id="datos-de-ejemplo">Datos de ejemplo:</h3>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb5" data-code-line-numbers="3|7-11"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1"></a><span class="fu">library</span>(tidyverse)</span>
-<span id="cb5-2"><a href="#cb5-2"></a><span class="fu">library</span>(sparklyr)</span>
-<span id="cb5-3"><a href="#cb5-3"></a><span class="fu">library</span>(pointblank)</span>
-<span id="cb5-4"><a href="#cb5-4"></a></span>
-<span id="cb5-5"><a href="#cb5-5"></a>nyc_dir <span class="ot">&lt;-</span>  <span class="st">"/media/hd1/nyc-taxi/"</span></span>
-<span id="cb5-6"><a href="#cb5-6"></a></span>
-<span id="cb5-7"><a href="#cb5-7"></a>sc <span class="ot">&lt;-</span> <span class="fu">spark_connect</span>(<span class="at">master =</span> <span class="st">"local"</span>,</span>
-<span id="cb5-8"><a href="#cb5-8"></a>                    <span class="at">spark_home =</span> <span class="st">"~/spark/spark-3.0.0-bin-hadoop2.7/"</span>)</span>
-<span id="cb5-9"><a href="#cb5-9"></a></span>
-<span id="cb5-10"><a href="#cb5-10"></a>nyc_tabla <span class="ot">&lt;-</span> sc <span class="sc">|&gt;</span> </span>
-<span id="cb5-11"><a href="#cb5-11"></a>    <span class="fu">spark_read_parquet</span>(<span class="fu">str_glue</span>(<span class="st">"{nyc_dir}year=2020/month=1/part-0.parquet"</span>))</span>
-<span id="cb5-12"><a href="#cb5-12"></a></span>
-<span id="cb5-13"><a href="#cb5-13"></a>nyc_tabla</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb13" data-code-line-numbers="3|7-11"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1"></a><span class="fu">library</span>(tidyverse)</span>
+<span id="cb13-2"><a href="#cb13-2"></a><span class="fu">library</span>(sparklyr)</span>
+<span id="cb13-3"><a href="#cb13-3"></a><span class="fu">library</span>(pointblank)</span>
+<span id="cb13-4"><a href="#cb13-4"></a></span>
+<span id="cb13-5"><a href="#cb13-5"></a>nyc_dir <span class="ot">&lt;-</span>  <span class="st">"/media/hd1/nyc-taxi/"</span></span>
+<span id="cb13-6"><a href="#cb13-6"></a></span>
+<span id="cb13-7"><a href="#cb13-7"></a>sc <span class="ot">&lt;-</span> <span class="fu">spark_connect</span>(<span class="at">master =</span> <span class="st">"local"</span>,</span>
+<span id="cb13-8"><a href="#cb13-8"></a>                    <span class="at">spark_home =</span> <span class="st">"~/spark/spark-3.0.0-bin-hadoop2.7/"</span>)</span>
+<span id="cb13-9"><a href="#cb13-9"></a></span>
+<span id="cb13-10"><a href="#cb13-10"></a>nyc_tabla <span class="ot">&lt;-</span> sc  <span class="sc">|&gt;</span>  </span>
+<span id="cb13-11"><a href="#cb13-11"></a>    <span class="fu">spark_read_parquet</span>(<span class="fu">str_glue</span>(<span class="st">"{nyc_dir}year=2020/month=1/part-0.parquet"</span>))</span>
+<span id="cb13-12"><a href="#cb13-12"></a></span>
+<span id="cb13-13"><a href="#cb13-13"></a>nyc_tabla</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code># Source: spark&lt;part0_ccf5ca25_58f5_46dd_b218_45cc18510c25&gt; [?? x 22]
+<pre><code># Source: spark&lt;part0_8efceb07_2088_4cf1_9794_7c97514d8454&gt; [?? x 22]
    vendor_name pickup_datetime     dropoff_datetime    passenger_count
    &lt;chr&gt;       &lt;dttm&gt;              &lt;dttm&gt;                        &lt;dbl&gt;
  1 VTS         2020-01-01 10:40:30 2020-01-01 10:48:29               1
@@ -650,21 +714,19 @@ Variable Type
 #   congestion_surcharge &lt;dbl&gt;, pickup_location_id &lt;dbl&gt;, …</code></pre>
 </div>
 </div>
-</section>
-<section id="pointblank-en-spark-1" class="slide level2 light" data-background-color="#ffffff">
-<h2><span style="color: #ffffff;"><code>pointblank</code> en Spark</span></h2>
+</section><section id="pointblank-en-spark-1" class="slide level2 light" data-background-color="#ffffff"><h2><span style="color: #ffffff;"><code>pointblank</code> en Spark</span></h2>
 <div class="columns">
 <div class="column" style="width:70%;">
 <h3 id="encadenar-reglas">Encadenar reglas</h3>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb7" data-code-line-numbers="1-5|6-8"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1"></a>agent <span class="ot">&lt;-</span> </span>
-<span id="cb7-2"><a href="#cb7-2"></a>    <span class="fu">create_agent</span>(</span>
-<span id="cb7-3"><a href="#cb7-3"></a>        <span class="at">tbl =</span> nyc_tabla,</span>
-<span id="cb7-4"><a href="#cb7-4"></a>        <span class="at">tbl_name =</span> <span class="st">"big_tabla_nyc"</span></span>
-<span id="cb7-5"><a href="#cb7-5"></a>    ) <span class="sc">%&gt;%</span></span>
-<span id="cb7-6"><a href="#cb7-6"></a>    <span class="fu">col_is_posix</span>(<span class="fu">vars</span>(pickup_datetime)) <span class="sc">%&gt;%</span></span>
-<span id="cb7-7"><a href="#cb7-7"></a>    <span class="fu">col_vals_gt</span>(<span class="fu">vars</span>(passenger_count), <span class="at">value =</span> <span class="dv">0</span>) <span class="sc">%&gt;%</span></span>
-<span id="cb7-8"><a href="#cb7-8"></a>    <span class="fu">col_vals_gt</span>(<span class="fu">vars</span>(trip_distance), <span class="at">value =</span> <span class="dv">0</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb15" data-code-line-numbers="1-5|6-8"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1"></a>agent <span class="ot">&lt;-</span> </span>
+<span id="cb15-2"><a href="#cb15-2"></a>    <span class="fu">create_agent</span>(</span>
+<span id="cb15-3"><a href="#cb15-3"></a>        <span class="at">tbl =</span> nyc_tabla,</span>
+<span id="cb15-4"><a href="#cb15-4"></a>        <span class="at">tbl_name =</span> <span class="st">"big_tabla_nyc"</span></span>
+<span id="cb15-5"><a href="#cb15-5"></a>    )  <span class="sc">|&gt;</span></span>
+<span id="cb15-6"><a href="#cb15-6"></a>    <span class="fu">col_is_posix</span>(<span class="fu">vars</span>(pickup_datetime))  <span class="sc">|&gt;</span></span>
+<span id="cb15-7"><a href="#cb15-7"></a>    <span class="fu">col_vals_gt</span>(<span class="fu">vars</span>(passenger_count), <span class="at">value =</span> <span class="dv">0</span>)  <span class="sc">|&gt;</span></span>
+<span id="cb15-8"><a href="#cb15-8"></a>    <span class="fu">col_vals_gt</span>(<span class="fu">vars</span>(trip_distance), <span class="at">value =</span> <span class="dv">0</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </div><div class="column" style="width:1%;">
 
@@ -672,30 +734,29 @@ Variable Type
 <h3 id="pasos">Pasos</h3>
 <ol type="1">
 <li>Se crea un “Agente”</li>
-<li>Se añaden <a href="https://rich-iannone.github.io/pointblank/articles/VALID-I.html">reglas de validación</a></li>
+<li>Se añaden <a href="https://rich-iannone.github.io/pointblank/articles/VALID-I.html">reglas de validación</a>
+</li>
 </ol>
 </div>
 </div>
-</section>
-<section id="pointblank-en-spark-2" class="slide level2 light" data-background-color="#ffffff">
-<h2><span style="color: #ffffff;"><code>pointblank</code> en Spark</span></h2>
+</section><section id="pointblank-en-spark-2" class="slide level2 light" data-background-color="#ffffff"><h2><span style="color: #ffffff;"><code>pointblank</code> en Spark</span></h2>
 <div class="columns">
 <div class="column" style="width:70%;">
 <h3 id="interrogar-al-agente">Interrogar al agente</h3>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb8" data-code-line-numbers="11-13"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1"></a><span class="co"># crear agente</span></span>
-<span id="cb8-2"><a href="#cb8-2"></a>agent <span class="ot">&lt;-</span> </span>
-<span id="cb8-3"><a href="#cb8-3"></a>    <span class="fu">create_agent</span>(</span>
-<span id="cb8-4"><a href="#cb8-4"></a>        <span class="at">tbl =</span> nyc_tabla,</span>
-<span id="cb8-5"><a href="#cb8-5"></a>        <span class="at">tbl_name =</span> <span class="st">"big_tabla_nyc"</span></span>
-<span id="cb8-6"><a href="#cb8-6"></a>    ) <span class="sc">%&gt;%</span></span>
-<span id="cb8-7"><a href="#cb8-7"></a>    <span class="fu">col_is_posix</span>(<span class="fu">vars</span>(pickup_datetime)) <span class="sc">%&gt;%</span></span>
-<span id="cb8-8"><a href="#cb8-8"></a>    <span class="fu">col_vals_gt</span>(<span class="fu">vars</span>(passenger_count), <span class="at">value =</span> <span class="dv">0</span>) <span class="sc">%&gt;%</span></span>
-<span id="cb8-9"><a href="#cb8-9"></a>    <span class="fu">col_vals_gt</span>(<span class="fu">vars</span>(trip_distance), <span class="at">value =</span> <span class="dv">0</span>)</span>
-<span id="cb8-10"><a href="#cb8-10"></a></span>
-<span id="cb8-11"><a href="#cb8-11"></a><span class="co"># preguntar </span></span>
-<span id="cb8-12"><a href="#cb8-12"></a>agent <span class="sc">%&gt;%</span></span>
-<span id="cb8-13"><a href="#cb8-13"></a>  <span class="fu">interrogate</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb16" data-code-line-numbers="11-13"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1"></a><span class="co"># crear agente</span></span>
+<span id="cb16-2"><a href="#cb16-2"></a>agent <span class="ot">&lt;-</span> </span>
+<span id="cb16-3"><a href="#cb16-3"></a>    <span class="fu">create_agent</span>(</span>
+<span id="cb16-4"><a href="#cb16-4"></a>        <span class="at">tbl =</span> nyc_tabla,</span>
+<span id="cb16-5"><a href="#cb16-5"></a>        <span class="at">tbl_name =</span> <span class="st">"big_tabla_nyc"</span></span>
+<span id="cb16-6"><a href="#cb16-6"></a>    )  <span class="sc">|&gt;</span></span>
+<span id="cb16-7"><a href="#cb16-7"></a>    <span class="fu">col_is_posix</span>(<span class="fu">vars</span>(pickup_datetime))  <span class="sc">|&gt;</span></span>
+<span id="cb16-8"><a href="#cb16-8"></a>    <span class="fu">col_vals_gt</span>(<span class="fu">vars</span>(passenger_count), <span class="at">value =</span> <span class="dv">0</span>)  <span class="sc">|&gt;</span></span>
+<span id="cb16-9"><a href="#cb16-9"></a>    <span class="fu">col_vals_gt</span>(<span class="fu">vars</span>(trip_distance), <span class="at">value =</span> <span class="dv">0</span>)</span>
+<span id="cb16-10"><a href="#cb16-10"></a></span>
+<span id="cb16-11"><a href="#cb16-11"></a><span class="co"># preguntar </span></span>
+<span id="cb16-12"><a href="#cb16-12"></a>agent  <span class="sc">|&gt;</span></span>
+<span id="cb16-13"><a href="#cb16-13"></a>  <span class="fu">interrogate</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </div><div class="column" style="width:1%;">
 
@@ -703,48 +764,148 @@ Variable Type
 <h3 id="pasos-1">Pasos</h3>
 <ol type="1">
 <li>Se crea un “Agente”</li>
-<li>Se añaden <a href="https://rich-iannone.github.io/pointblank/articles/VALID-I.html">reglas de validación</a></li>
+<li>Se añaden <a href="https://rich-iannone.github.io/pointblank/articles/VALID-I.html">reglas de validación</a>
+</li>
 <li>Interrogar al agente</li>
 </ol>
 </div>
 </div>
-</section>
-<section id="pointblank-en-spark-3" class="slide level2 light" data-background-color="#ffffff">
-<h2><span style="color: #ffffff;"><code>pointblank</code> en Spark</span></h2>
+</section><section id="pointblank-en-spark-3" class="slide level2 light" data-background-color="#ffffff"><h2><span style="color: #ffffff;"><code>pointblank</code> en Spark</span></h2>
 <div class="columns">
 <div class="column" style="width:60%;">
 <h3 id="ver-resultado">Ver resultado</h3>
 <p><img data-src="images/res1.png"></p>
 </div><div class="column" style="width:40%;">
 <center>
-<br><br><br> <strong>Date/Time/Object Metadata</strong>
+<br><br><br><strong>Date/Time/Object Metadata</strong>
 </center>
 </div>
+</div>
+</section><section id="pointblank-en-spark-4" class="slide level2 light" data-background-color="#ffffff"><h2><span style="color: #ffffff;"><code>pointblank</code> en Spark</span></h2>
+<div class="columns">
+<div class="column" style="width:70%;">
+<h3 id="varias-columnas-y-sintaxis-tidyselect">Varias columnas y sintaxis tidyselect</h3>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb17" data-code-line-numbers="7-10|13-14"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1"></a>agent2 <span class="ot">&lt;-</span> </span>
+<span id="cb17-2"><a href="#cb17-2"></a>    <span class="fu">create_agent</span>(</span>
+<span id="cb17-3"><a href="#cb17-3"></a>        <span class="at">tbl =</span> nyc_tabla,</span>
+<span id="cb17-4"><a href="#cb17-4"></a>        <span class="at">tbl_name =</span> <span class="st">"big_tabla_nyc"</span></span>
+<span id="cb17-5"><a href="#cb17-5"></a>    )  <span class="sc">|&gt;</span></span>
+<span id="cb17-6"><a href="#cb17-6"></a>    <span class="fu">col_is_posix</span>(pickup_datetime)  <span class="sc">|&gt;</span></span>
+<span id="cb17-7"><a href="#cb17-7"></a>    <span class="fu">col_vals_gt</span>(tip_amount<span class="sc">:</span>total_amount, <span class="at">value =</span> <span class="dv">0</span>)  <span class="sc">|&gt;</span></span>
+<span id="cb17-8"><a href="#cb17-8"></a>    <span class="fu">col_vals_gt</span>(<span class="fu">c</span>(pickup_location_id, dropoff_location_id), <span class="at">value =</span> <span class="dv">0</span>)<span class="sc">|&gt;</span> </span>
+<span id="cb17-9"><a href="#cb17-9"></a>    <span class="fu">col_vals_between</span>(trip_distance, <span class="at">left =</span> <span class="dv">0</span>, <span class="at">right =</span> <span class="dv">200</span>, <span class="at">inclusive =</span> <span class="fu">c</span>(<span class="cn">FALSE</span>, <span class="cn">TRUE</span>))</span>
+<span id="cb17-10"><a href="#cb17-10"></a></span>
+<span id="cb17-11"><a href="#cb17-11"></a><span class="co"># preguntar </span></span>
+<span id="cb17-12"><a href="#cb17-12"></a>agent2  <span class="sc">|&gt;</span></span>
+<span id="cb17-13"><a href="#cb17-13"></a>  <span class="fu">interrogate</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</div><div class="column" style="width:1%;">
+
+</div><div class="column" style="width:29%;">
+<h3 id="syntactic-sugar">Syntactic sugar</h3>
+<ol type="1">
+<li>var1:var20</li>
+<li>c(var1, var30) sin comillas</li>
+</ol>
+</div>
+</div>
+</section><section id="pointblank-en-spark-5" class="slide level2 light" data-background-color="#ffffff"><h2><span style="color: #ffffff;"><code>pointblank</code> en Spark</span></h2>
+<h3 id="ver-resultado-1">Ver resultado</h3>
+
+<img data-src="images/res2.png" class="r-stretch"></section><section id="pointblank-en-spark-6" class="slide level2 light" data-background-color="#ffffff"><h2><span style="color: #ffffff;"><code>pointblank</code> en Spark</span></h2>
+<div class="columns">
+<div class="column" style="width:60%;">
+<h3 id="action-levels">Action levels</h3>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb18" data-code-line-numbers="2-5"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1"></a>al <span class="ot">&lt;-</span> <span class="fu">action_levels</span>(</span>
+<span id="cb18-2"><a href="#cb18-2"></a>    <span class="at">warn_at =</span> <span class="fl">0.05</span>,</span>
+<span id="cb18-3"><a href="#cb18-3"></a>    <span class="at">stop_at =</span> <span class="fl">0.2</span></span>
+<span id="cb18-4"><a href="#cb18-4"></a>) </span>
+<span id="cb18-5"><a href="#cb18-5"></a></span>
+<span id="cb18-6"><a href="#cb18-6"></a>agent2_with_al <span class="ot">&lt;-</span> </span>
+<span id="cb18-7"><a href="#cb18-7"></a>    <span class="fu">create_agent</span>(</span>
+<span id="cb18-8"><a href="#cb18-8"></a>        <span class="at">tbl =</span> nyc_tabla,</span>
+<span id="cb18-9"><a href="#cb18-9"></a>        <span class="at">tbl_name =</span> <span class="st">"big_tabla_nyc"</span>, </span>
+<span id="cb18-10"><a href="#cb18-10"></a>        <span class="at">actions =</span> al</span>
+<span id="cb18-11"><a href="#cb18-11"></a>    )  <span class="sc">|&gt;</span></span>
+<span id="cb18-12"><a href="#cb18-12"></a>    <span class="fu">col_is_posix</span>(pickup_datetime)  <span class="sc">|&gt;</span></span>
+<span id="cb18-13"><a href="#cb18-13"></a>    <span class="fu">col_vals_gt</span>(tip_amount<span class="sc">:</span>total_amount, <span class="at">value =</span> <span class="dv">0</span>)  <span class="sc">|&gt;</span></span>
+<span id="cb18-14"><a href="#cb18-14"></a>    <span class="fu">col_vals_gt</span>(<span class="fu">c</span>(pickup_location_id, dropoff_location_id), <span class="at">value =</span> <span class="dv">0</span>)<span class="sc">|&gt;</span> </span>
+<span id="cb18-15"><a href="#cb18-15"></a>    <span class="fu">col_vals_between</span>(trip_distance, <span class="at">left =</span> <span class="dv">0</span>, <span class="at">right =</span> <span class="dv">200</span>, <span class="at">inclusive =</span> <span class="fu">c</span>(<span class="cn">FALSE</span>, <span class="cn">TRUE</span>))</span>
+<span id="cb18-16"><a href="#cb18-16"></a></span>
+<span id="cb18-17"><a href="#cb18-17"></a><span class="co"># preguntar </span></span>
+<span id="cb18-18"><a href="#cb18-18"></a>agent2_with_al  <span class="sc">|&gt;</span></span>
+<span id="cb18-19"><a href="#cb18-19"></a>  <span class="fu">interrogate</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</div><div class="column" style="width:1%;">
+
+</div><div class="column" style="width:39%;">
+<p><br></p>
+<ol type="1">
+<li>Entre 0 y 1 ➡ Warning cuando se supera la proporción de casos que incumple la regla</li>
+<li>Mayor que 1 ➡ Warning cuando se incumple la regla en n casos.</li>
+<li>Se pueden especificar actions levels en cada variable, pero la de stop_at se comporta diferente ➡ Se interrumpe el flujo</li>
+</ol>
+</div>
+</div>
+</section><section id="pointblank-en-spark-7" class="slide level2 light" data-background-color="#ffffff"><h2><span style="color: #ffffff;"><code>pointblank</code> en Spark</span></h2>
+<h3 id="con-action-levels">Con <code>action levels</code>
+</h3>
+
+<img data-src="images/res3.png" class="r-stretch"></section><section id="pointblank-en-spark-8" class="slide level2 light" data-background-color="#ffffff"><h2><span style="color: #ffffff;"><code>pointblank</code> en Spark</span></h2>
+<div class="columns">
+<div class="column" style="width:70%;">
+<h3 id="usar-el-agente-en-otra-tabla">Usar el agente en otra tabla</h3>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb19" data-code-line-numbers="1-2|5-6|7-10"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1"></a>nyc_tabla_202201 <span class="ot">&lt;-</span>  sc  <span class="sc">|&gt;</span>  </span>
+<span id="cb19-2"><a href="#cb19-2"></a>    <span class="fu">spark_read_parquet</span>(<span class="fu">str_glue</span>(<span class="st">"{nyc_dir}year=2022/month=1/part-0.parquet"</span>)) </span>
+<span id="cb19-3"><a href="#cb19-3"></a></span>
+<span id="cb19-4"><a href="#cb19-4"></a></span>
+<span id="cb19-5"><a href="#cb19-5"></a>nuevo_agente <span class="ot">&lt;-</span>  agent2_with_al <span class="sc">|&gt;</span> </span>
+<span id="cb19-6"><a href="#cb19-6"></a>    <span class="fu">set_tbl</span>(nyc_tabla_202201, </span>
+<span id="cb19-7"><a href="#cb19-7"></a>            <span class="at">tbl_name =</span> <span class="st">"Validacion Enero 2022"</span>) </span>
+<span id="cb19-8"><a href="#cb19-8"></a></span>
+<span id="cb19-9"><a href="#cb19-9"></a><span class="co"># preguntar </span></span>
+<span id="cb19-10"><a href="#cb19-10"></a>nuevo_agente  <span class="sc">|&gt;</span></span>
+<span id="cb19-11"><a href="#cb19-11"></a>  <span class="fu">interrogate</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</div><div class="column" style="width:1%;">
+
+</div><div class="column" style="width:29%;">
+<p><br></p>
+<ol type="1">
+<li>Simplemente se setea nueva tabla</li>
+<li>Se interroga al agente para devolver el informe</li>
+</ol>
+</div>
+</div>
+</section><section id="pointblank-en-spark-9" class="slide level2 light" data-background-color="#ffffff"><h2><span style="color: #ffffff;"><code>pointblank</code> en Spark</span></h2>
+<h3 id="nuevo-reporte">Nuevo reporte</h3>
+
+<img data-src="images/res4.png" class="r-stretch"></section><section id="pointblank-en-spark-10" class="slide level2 light" data-background-color="#ffffff"><h2><span style="color: #ffffff;"><code>pointblank</code> en Spark</span></h2>
+<div class="fragment">
+<ul>
+<li>Hay más opciones si se trabaja con data.frames o conexiones a bases de datos
+<ul>
+<li>Guardar especificaciones del agente en yaml</li>
+<li>Guardar cadenas de conexión en yaml</li>
+</ul>
+</li>
+<li>Crear un informe de la tabla con <code>scan_data</code>
+</li>
+<li>Pasar validaciones a tabla sin crear agente (en spark no funciona)</li>
+<li>Utilizar <code>pointblank</code> para test unitarios</li>
+</ul>
 </div>
 <div class="footer footer-default">
 
 </div>
 </section>
-    </div>
+</div>
   </div>
 
-  <script>window.backupDefine = window.define; window.define = undefined;</script>
-  <script src="index_files/libs/revealjs/dist/reveal.js"></script>
-  <!-- reveal.js plugins -->
-  <script src="index_files/libs/revealjs/plugin/quarto-line-highlight/line-highlight.js"></script>
-  <script src="index_files/libs/revealjs/plugin/pdf-export/pdfexport.js"></script>
-  <script src="index_files/libs/revealjs/plugin/reveal-menu/menu.js"></script>
-  <script src="index_files/libs/revealjs/plugin/reveal-menu/quarto-menu.js"></script>
-  <script src="index_files/libs/revealjs/plugin/quarto-support/support.js"></script>
-  
-
-  <script src="index_files/libs/revealjs/plugin/notes/notes.js"></script>
-  <script src="index_files/libs/revealjs/plugin/search/search.js"></script>
-  <script src="index_files/libs/revealjs/plugin/zoom/zoom.js"></script>
-  <script src="index_files/libs/revealjs/plugin/math/math.js"></script>
-  <script>window.define = window.backupDefine; window.backupDefine = undefined;</script>
-
-  <script>
+  <script>window.backupDefine = window.define; window.define = undefined;</script><script src="index_files/libs/revealjs/dist/reveal.js"></script><!-- reveal.js plugins --><script src="index_files/libs/revealjs/plugin/quarto-line-highlight/line-highlight.js"></script><script src="index_files/libs/revealjs/plugin/pdf-export/pdfexport.js"></script><script src="index_files/libs/revealjs/plugin/reveal-menu/menu.js"></script><script src="index_files/libs/revealjs/plugin/reveal-menu/quarto-menu.js"></script><script src="index_files/libs/revealjs/plugin/quarto-support/support.js"></script><script src="index_files/libs/revealjs/plugin/notes/notes.js"></script><script src="index_files/libs/revealjs/plugin/search/search.js"></script><script src="index_files/libs/revealjs/plugin/zoom/zoom.js"></script><script src="index_files/libs/revealjs/plugin/math/math.js"></script><script>window.define = window.backupDefine; window.backupDefine = undefined;</script><script>
 
       // Full list of configuration options available at:
       // https://revealjs.com/config/
@@ -935,9 +1096,7 @@ Variable Type
           RevealZoom
         ]
       });
-    </script>
-    
-    <script>
+    </script><script>
       // htmlwidgets need to know to resize themselves when slides are shown/hidden.
       // Fire the "slideenter" event (handled by htmlwidgets.js) when the current
       // slide changes (different for each slide format).
@@ -972,9 +1131,7 @@ Variable Type
         }
 
       })();
-    </script>
-
-    <script id="quarto-html-after-body" type="application/javascript">
+    </script><script id="quarto-html-after-body" type="application/javascript">
     window.document.addEventListener("DOMContentLoaded", function (event) {
       const toggleBodyColorMode = (bsSheetEl) => {
         const mode = bsSheetEl.getAttribute("data-mode");
@@ -1106,6 +1263,6 @@ Variable Type
       }
     });
     </script>
-    
+
 
 </body></html>
