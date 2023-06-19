@@ -454,7 +454,7 @@ Se puede utilizar con dataframes o con orígenes remotos de datos como postgress
 * Se puede utilizar en Bigdata usando `sparklyr` (me centraré en esa parte)
 :::
 
-##  {.trans background-color="#ffffff" background-image="images/trans5.png" background-size="100%"}
+##  {.trans background-color="#ffffff" background-image="images/trans5.png" background-size="75%"}
 
 <h1>
 

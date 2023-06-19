@@ -181,7 +181,7 @@ body > div.reveal.focused.has-horizontal-slides.ready.fade.has-light-background 
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  opacity: 0.85;
+  opacity: 0.80;
 }
 
 .transdark h1 {
@@ -198,5 +198,5 @@ body > div.reveal.focused.has-horizontal-slides.ready.fade.has-light-background 
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  opacity: 0.85;
+  opacity: 0.80;
 }
