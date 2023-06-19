@@ -1,9 +1,10 @@
 ---
-title: "Validación de datos con pointblank (en spark)"
-subtitle: "\"Usando el paquete `pointblank`\""
+title: "Validación de datos con pointblank"
+subtitle: "\"Usando el paquete `pointblank` en `Spark`\""
 author: "Cañadas Reche, José Luis"
 institute: "Grupo usuarios de R Madrid"
 date: "2023-06-29"
+date-format: iso
 format:
   revealjs: 
     slide-number: true
@@ -19,7 +20,7 @@ format:
     width: 1600
 editor: source
 title-slide-attributes: 
-  #data-background-image: "images/title_back.PNG"
+  data-background-image: "images/esferas.jpeg"
   data-background-size: "45%"
   data-background-position: "right"
 ---
@@ -121,7 +122,7 @@ Hablando de datos podría ser cosas como:
 
 ::: {.column width="45%"}
 ::: fragment
-![](images/edades_negativas.jpg){.memes width="230px" height="500px"}
+![](images/edades_negativas.jpg){.memes width="300px" height="450px"}
 :::
 :::
 :::
@@ -264,7 +265,131 @@ nuevos_datos <- data.frame(id = sample(1:10))
 :::
 :::
 
-## otra
+## Duplicados
+
+::: columns
+::: {.column width="50%"}
+<h3>Duplicados</h3>
+
+*"¿Hay duplicados? ¿son únicas las pk?*
+:::
+
+::: {.column width="50%"}
+<br>
+
+::: fragment
+```{r duplicated_pred, echo =TRUE}
+
+anyDuplicated(clientes$customer_id)==0
+
+```
+
+:::
+:::
+:::
+
+## Longitud de strings
+
+::: columns
+::: {.column width="50%"}
+<h3>Longitud de strings</h3>
+
+*"¿Hay números de teléfonos de longitud errónea?"*
+:::
+
+::: {.column width="50%"}
+<br>
+
+::: fragment
+```{r prep_strin, echo =FALSE}
+
+clientes$tlf <- c("555945421", "55509082", "5559421")
+
+```
+
+```{r}
+clientes
+```
+
+```{r, string_length, echo = TRUE}
+
+sapply(clientes$tlf, function(x) nchar(x) == 9)
+
+```
+
+:::
+:::
+:::
+
+## Formato
+
+::: columns
+::: {.column width="50%"}
+<h3>Formato</h3>
+
+*"Me pasan una fecha, pero ¿está en formato correcto?"*
+:::
+
+::: {.column width="50%"}
+<br>
+
+::: fragment
+```{r format_prep, echo =FALSE}
+
+dates <- c("2023-24-02", "1976/12/12", "02-15-1941")
+
+```
+
+
+
+```{r format_check, echo = TRUE}
+dates
+
+library(lubridate)
+!is.na(parse_date_time(dates,orders="ymd"))
+
+```
+
+:::
+:::
+:::
+
+## Rango de valores 
+
+::: columns
+::: {.column width="50%"}
+<h3>Rango de valores </h3>
+
+*"El rango de mi variable se corresponde con lo que se espera"*
+:::
+
+::: {.column width="50%"}
+<br>
+
+::: fragment
+```{r range_prep, echo =FALSE}
+set.seed(167)
+clientes$edad <- sample(c(5, 15, 59, 35, 90 ), 3)
+
+```
+
+
+
+```{r range_check, echo = TRUE}
+clientes
+
+clientes$gt_18_lt_65 <- sapply(clientes$edad, 
+                               function(x) x >= 18 & x <= 65)
+
+clientes
+```
+
+:::
+:::
+:::
+
+
+
 :::
 
 ##  {.trans background-color="#ffffff" background-image="images/trans3.png" background-size="65%"}
@@ -345,7 +470,7 @@ library(pointblank)
 nyc_dir <-  "/media/hd1/nyc-taxi/"
 
 sc <- spark_connect(master = "local",
-                    spark_home = "~/spark/spark-3.0.0-bin-hadoop2.7/")
+                    spark_home = "~/spark/spark-3.3.2-bin-hadoop2/")
 
 nyc_tabla <- sc  |>  
     spark_read_parquet(str_glue("{nyc_dir}year=2020/month=1/part-0.parquet"))
@@ -354,7 +479,12 @@ nyc_tabla
 
 ```
 
-## <span style="color: #ffffff;">`pointblank` en Spark {.light background-color="#ffffff"}
+
+## <span style="color: #ffffff;">`pointblank` en Spark. Crear agente {.light background-color="#ffffff"}
+
+![](images/VALID-I.svg)
+
+## <span style="color: #ffffff;">`pointblank` en Spark. Crear agente {.light background-color="#ffffff"}
 
 ::: columns
 ::: {.column width="70%"}
@@ -383,7 +513,7 @@ agent <-
 :::
 :::
 
-## <span style="color: #ffffff;">`pointblank` en Spark {.light background-color="#ffffff"}
+## <span style="color: #ffffff;">`pointblank` en Spark. Interrogatorio {.light background-color="#ffffff"}
 
 ::: columns
 ::: {.column width="70%"}
@@ -420,7 +550,7 @@ agent  |>
 :::
 :::
 
-## <span style="color: #ffffff;">`pointblank` en Spark {.light background-color="#ffffff"}
+## <span style="color: #ffffff;">`pointblank` en Spark. Informe {.light background-color="#ffffff"}
 
 ::: columns
 ::: {.column width="60%"}
@@ -434,7 +564,7 @@ agent  |>
 :::
 :::
 
-## <span style="color: #ffffff;">`pointblank` en Spark {.light background-color="#ffffff"}
+## <span style="color: #ffffff;">`pointblank` en Spark. Tidyselect {.light background-color="#ffffff"}
 
 ::: columns
 ::: {.column width="70%"}
@@ -471,20 +601,19 @@ agent2  |>
 :::
 :::
 
-## <span style="color: #ffffff;">`pointblank` en Spark {.light background-color="#ffffff"}
+## <span style="color: #ffffff;">`pointblank` en Spark. Informe  {.light background-color="#ffffff"}
 
 ### Ver resultado
 
 ![](images/res2.png)
 
-## <span style="color: #ffffff;">`pointblank` en Spark {.light background-color="#ffffff"}
+## <span style="color: #ffffff;">`pointblank` en Spark. Action levels {.light background-color="#ffffff"}
 
 ::: columns
 ::: {.column width="60%"}
 ### Action levels
 
-```{r action_levels, echo = TRUE, results='hide', `code-line-numbers`="2-5"}
-
+```{r action_levels, echo = TRUE, results='hide', `code-line-numbers`="1-4|6-15"}
 al <- action_levels(
     warn_at = 0.05,
     stop_at = 0.2
@@ -521,14 +650,14 @@ agent2_with_al  |>
 :::
 :::
 
-## <span style="color: #ffffff;">`pointblank` en Spark {.light background-color="#ffffff"}
+## <span style="color: #ffffff;">`pointblank` en Spark. Action levels {.light background-color="#ffffff"}
 
 ### Con `action levels`
 
 ![](images/res3.png)
 
 
-## <span style="color: #ffffff;">`pointblank` en Spark {.light background-color="#ffffff"}
+## <span style="color: #ffffff;">`pointblank` en Spark. Reutilizar {.light background-color="#ffffff"}
 
 ::: columns
 ::: {.column width="70%"}
@@ -558,25 +687,130 @@ nuevo_agente  |>
 
 <br>
 
-1. Simplemente se setea nueva tabla
+1. Simplemente se "setea" nueva tabla
 2. Se interroga al agente para devolver el informe
 :::
 :::
 
-## <span style="color: #ffffff;">`pointblank` en Spark {.light background-color="#ffffff"}
+## <span style="color: #ffffff;">`pointblank` en Spark. Informe {.light background-color="#ffffff"}
 
 ### Nuevo reporte
 
 ![](images/res4.png)
 
 
-## <span style="color: #ffffff;">`pointblank` en Spark {.light background-color="#ffffff"}
+## <span style="color: #ffffff;">`pointblank` en Spark. Limitaciones {.light background-color="#ffffff"}
 
-:::fragment
+::: incremental
 * Hay más opciones si  se trabaja con data.frames o conexiones a bases de datos
     * Guardar especificaciones del agente en yaml
     * Guardar cadenas de conexión en yaml
 * Crear un informe de la tabla con `scan_data`
 * Pasar validaciones a tabla sin crear agente (en spark no funciona)
 * Utilizar `pointblank` para test unitarios
+:::
+
+
+## <span style="color: #ffffff;">`pointblank` en Spark. Guardar{.light background-color="#ffffff"}
+
+::: columns
+::: {.column width="70%"}
+### Guardar agente 
+
+```{r agente_save_disk, echo = TRUE, results='hide', `code-line-numbers`="2"}
+
+x_write_disk(agent2_with_al, filename = "agente_nyc.rds")
+
+spark_disconnect(sc)
+```
+:::
+
+::: {.column width="1%"}
+:::
+
+::: {.column width="29%"}
+
+<br>
+
+1. La mejor forma (si queremos usarlo en spark) es guardar como objeto serializado.
+2. Lo usaremos en nueva sesión de spark
+:::
+:::
+
+
+## <span style="color: #ffffff;">`pointblank` en Spark. Leer {.light background-color="#ffffff"}
+
+::: columns
+::: {.column width="70%"}
+### Leerlo
+
+```{r agente_read_from_disk, echo = TRUE, results='hide', `code-line-numbers`="2"}
+
+sc <- spark_connect(master = "local",
+                    spark_home = "~/spark/spark-3.3.2-bin-hadoop2/")
+
+nyc_tabla_nueva <- sc  |>  
+    spark_read_parquet(str_glue("{nyc_dir}year=2022/month=2/part-0.parquet"))
+
+
+agente_from_disk <-  x_read_disk(filename = "agente_nyc.rds")
+
+```
+:::
+
+::: {.column width="1%"}
+:::
+
+::: {.column width="29%"}
+
+<br>
+
+1. Nueva sesión de spark
+2. Leemos agente guardado
+:::
+:::
+
+## <span style="color: #ffffff;">`pointblank` en Spark. Interrogar{.light background-color="#ffffff"}
+
+::: columns
+::: {.column width="70%"}
+### Leerlo
+
+```{r agente_from_disk_interrogate, echo = TRUE, results='hide', `code-line-numbers`="2-3"}
+agente_from_disk  |> 
+    set_tbl(nyc_tabla_nueva) |> 
+    interrogate()
+
+```
+:::
+
+::: {.column width="1%"}
+:::
+
+::: {.column width="29%"}
+
+<br>
+
+1. Nueva sesión de spark
+2. Leemos agente guardado
+:::
+:::
+
+## <span style="color: #ffffff;">`pointblank` en Spark. resultado{.light background-color="#ffffff"}
+
+
+
+![](images/res5.png)
+
+
+
+## <span style="color: #ffffff;">`pointblank` en Spark. Multiagentes{.light background-color="#ffffff"}
+
+::: incremental
+
+* Unir varios agentes en uno
+* Poder salvar  en un solo objeto
+* Ejemplos:
+    * Unir diferentes agentes que interrogan a tablas distintas
+    * Unir agentes que interrogan misma tabla, pero varias cosas 
 :::
