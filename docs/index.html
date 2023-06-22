@@ -768,7 +768,7 @@ Rango de valores
 <li><a href="https://rich-iannone.github.io/pointblank/articles/VALID-VI.html">VALID-VI: R Markdown Document Validation</a></li>
 </ol>
 </div>
-</section><section id="section-3" class="slide level2 transdark" data-background-color="#333333" data-background-image="images/trans4.png" data-background-size="65%"><h2></h2>
+</section><section id="section-3" class="slide level2 transdark" data-background-color="#333333" data-background-image="images/why.jpg" data-background-size="65%"><h2></h2>
 <h1>
 <center>
 <span style="color: #000000;">¿Por qué <code>pointblank</code>?</span>
@@ -811,7 +811,7 @@ Rango de valores
 <span id="cb24-12"><a href="#cb24-12"></a></span>
 <span id="cb24-13"><a href="#cb24-13"></a>nyc_tabla</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code># Source: spark&lt;part0_4e7a776a_1562_48ce_8fac_cfa27444458b&gt; [?? x 22]
+<pre><code># Source: spark&lt;part0_c96b6ac4_1259_4b5e_8987_847e1efa579d&gt; [?? x 22]
    vendor_name pickup_datetime     dropoff_datetime    passenger_count
    &lt;chr&gt;       &lt;dttm&gt;              &lt;dttm&gt;                        &lt;dbl&gt;
  1 VTS         2020-01-01 10:40:30 2020-01-01 10:48:29               1
@@ -1004,22 +1004,7 @@ Rango de valores
 </section><section id="pointblank-en-spark.-informe-2" class="slide level2 light" data-background-color="#ffffff"><h2><span style="color: #ffffff;"><code>pointblank</code> en Spark. Informe</span></h2>
 <h3 id="nuevo-reporte">Nuevo reporte</h3>
 
-<img data-src="images/res4.png" class="r-stretch"></section><section id="pointblank-en-spark.-limitaciones" class="slide level2 light" data-background-color="#ffffff"><h2><span style="color: #ffffff;"><code>pointblank</code> en Spark. Limitaciones</span></h2>
-<div>
-<ul>
-<li class="fragment">Hay más opciones si se trabaja con data.frames o conexiones a bases de datos
-<ul>
-<li class="fragment">Guardar especificaciones del agente en yaml</li>
-<li class="fragment">Guardar cadenas de conexión en yaml</li>
-</ul>
-</li>
-<li class="fragment">Crear un informe de la tabla con <code>scan_data</code>
-</li>
-<li class="fragment">Pasar validaciones a tabla sin crear agente (en spark no funciona)</li>
-<li class="fragment">Utilizar <code>pointblank</code> para test unitarios</li>
-</ul>
-</div>
-</section><section id="pointblank-en-spark.-guardar" class="slide level2 light" data-background-color="#ffffff"><h2><span style="color: #ffffff;"><code>pointblank</code> en Spark. Guardar</span></h2>
+<img data-src="images/res4.png" class="r-stretch"></section><section id="pointblank-en-spark.-guardar" class="slide level2 light" data-background-color="#ffffff"><h2><span style="color: #ffffff;"><code>pointblank</code> en Spark. Guardar</span></h2>
 <div class="columns">
 <div class="column" style="width:70%;">
 <h3 id="guardar-agente">Guardar agente</h3>
@@ -1078,24 +1063,34 @@ Rango de valores
 <ol type="1">
 <li>Nueva sesión de spark</li>
 <li>Leemos agente guardado</li>
+<li>Interrogamos</li>
 </ol>
 </div>
 </div>
 </section><section id="pointblank-en-spark.-resultado" class="slide level2 light" data-background-color="#ffffff"><h2><span style="color: #ffffff;"><code>pointblank</code> en Spark. resultado</span></h2>
 
-<img data-src="images/res5.png" style="width:120.0%" class="r-stretch"></section><section id="pointblank-en-spark.-multiagentes" class="slide level2 light" data-background-color="#ffffff"><h2><span style="color: #ffffff;"><code>pointblank</code> en Spark. Multiagentes</span></h2>
+<img data-src="images/res5.png" style="width:120.0%" class="r-stretch"></section><section id="pointblank-en-spark.-limitaciones" class="slide level2 light" data-background-color="#ffffff"><h2><span style="color: #ffffff;"><code>pointblank</code> en Spark. Limitaciones</span></h2>
 <div>
 <ul>
-<li class="fragment">Unir varios agentes en uno</li>
-<li class="fragment">Poder salvar en un solo objeto</li>
-<li class="fragment">Ejemplos:
+<li class="fragment">Hay más opciones si se trabaja con data.frames o conexiones a bases de datos
 <ul>
-<li class="fragment">Unir diferentes agentes que interrogan a tablas distintas</li>
-<li class="fragment">Unir agentes que interrogan misma tabla, pero varias cosas</li>
+<li class="fragment">Guardar especificaciones del agente en yaml</li>
+<li class="fragment">Guardar cadenas de conexión en yaml</li>
 </ul>
 </li>
+<li class="fragment">Crear un informe de la tabla con <code>scan_data</code>
+</li>
+<li class="fragment">Pasar validaciones a tabla sin crear agente (en spark no funciona)</li>
+<li class="fragment">Utilizar <code>pointblank</code> para test unitarios</li>
+<li class="fragment">Multiagentes</li>
 </ul>
 </div>
+</section><section id="section-5" class="slide level2 transdark" data-background-color="#333333" data-background-image="images/question-mark-1872665_1280.webp" data-background-size="65%"><h2></h2>
+<h1>
+<center>
+<span style="color: #000000;">¿Preguntas?</span>
+</center>
+</h1>
 <div class="footer footer-default">
 
 </div>

@@ -435,7 +435,7 @@ Se puede utilizar con dataframes o con orígenes remotos de datos como postgress
 6.  [VALID-VI: R Markdown Document Validation](https://rich-iannone.github.io/pointblank/articles/VALID-VI.html)
 :::
 
-##  {.transdark background-color="#333333" background-image="images/trans4.png" background-size="65%"}
+##  {.transdark background-color="#333333" background-image="images/why.jpg" background-size="65%"}
 
 <h1>
 
@@ -704,16 +704,7 @@ nuevo_agente  |>
 ![](images/res4.png)
 
 
-## <span style="color: #ffffff;">`pointblank` en Spark. Limitaciones {.light background-color="#ffffff"}
 
-::: incremental
-* Hay más opciones si  se trabaja con data.frames o conexiones a bases de datos
-    * Guardar especificaciones del agente en yaml
-    * Guardar cadenas de conexión en yaml
-* Crear un informe de la tabla con `scan_data`
-* Pasar validaciones a tabla sin crear agente (en spark no funciona)
-* Utilizar `pointblank` para test unitarios
-:::
 
 
 ## <span style="color: #ffffff;">`pointblank` en Spark. Guardar{.light background-color="#ffffff"}
@@ -798,6 +789,7 @@ agente_from_disk  |>
 
 1. Nueva sesión de spark
 2. Leemos agente guardado
+3. Interrogamos
 :::
 :::
 
@@ -807,15 +799,25 @@ agente_from_disk  |>
 
 ![](images/res5.png){width=120%}
 
-
-
-## <span style="color: #ffffff;">`pointblank` en Spark. Multiagentes{.light background-color="#ffffff"}
+## <span style="color: #ffffff;">`pointblank` en Spark. Limitaciones {.light background-color="#ffffff"}
 
 ::: incremental
 
-* Unir varios agentes en uno
-* Poder salvar  en un solo objeto
-* Ejemplos:
-    * Unir diferentes agentes que interrogan a tablas distintas
-    * Unir agentes que interrogan misma tabla, pero varias cosas 
+* Hay más opciones si  se trabaja con data.frames o conexiones a bases de datos
+    * Guardar especificaciones del agente en yaml
+    * Guardar cadenas de conexión en yaml
+* Crear un informe de la tabla con `scan_data`
+* Pasar validaciones a tabla sin crear agente (en spark no funciona)
+* Utilizar `pointblank` para test unitarios
+* Multiagentes
 :::
+
+##  {.transdark background-color="#333333" background-image="images/question-mark-1872665_1280.webp" background-size="65%"}
+
+<h1>
+
+<center>[¿Preguntas?]{style="color: #000000;"}</center>
+
+</h1>
+
+
